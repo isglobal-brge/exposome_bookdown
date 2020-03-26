@@ -1,0 +1,12 @@
+# Bioconductor packages
+
+This Shiny application is a front end support for other Bioconductor packages in order to provide a comfortable environment on to conduct different analysis with those packages. In concrete the packages are [rexposome](https://www.bioconductor.org/packages/release/bioc/html/rexposome.html), [omicRexposome](https://bioconductor.org/packages/release/bioc/html/omicRexposome.html) and [CTDquerier](http://www.bioconductor.org/packages/release/bioc/html/CTDquerier.html).
+
+## rexposome
+Rexposome is a package that allows to explore the exposome and to perform association analyses between exposures and health outcomes.
+
+## omicRexposome
+OmicRexposome is a package that systematizes the association evaluation between exposures and omic data, taking advantage of MultiDataSet for coordinated data management, rexposome for exposome data definition and limma for association testing. Also to perform data integration mixing exposome and omic data using multi co-inherent analysis (omicade4) and multi-canonical correlation analysis (PMA).
+
+## CTDquerier
+CTDquerier is a package to retrieve and visualize data from the [Comparative Toxicogenomics Database](http://ctdbase.org/). The downloaded data is formated as DataFrames for further downstream analyses.
