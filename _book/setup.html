@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; Gonzalez, Juan R." />
 
 
-<meta name="date" content="2020-03-25" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data-sets.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -133,17 +135,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a></li>
-<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a><ul>
+<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data-sets.html"><a href="data-sets.html#exposome-dataset"><i class="fa fa-check"></i><b>3.1</b> Exposome dataset</a></li>
 <li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#omics-dataset"><i class="fa fa-check"></i><b>3.2</b> Omics dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a><ul>
+<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#rexposome"><i class="fa fa-check"></i><b>4.1</b> rexposome</a></li>
 <li class="chapter" data-level="4.2" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#omicrexposome"><i class="fa fa-check"></i><b>4.2</b> omicRexposome</a></li>
 <li class="chapter" data-level="4.3" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#ctdquerier"><i class="fa fa-check"></i><b>4.3</b> CTDquerier</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a><ul>
-<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome analysis</a><ul>
+<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome analysis</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#lod-imputation"><i class="fa fa-check"></i><b>5.1.1</b> LOD imputation</a></li>
 <li class="chapter" data-level="5.1.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#missing-imputation"><i class="fa fa-check"></i><b>5.1.2</b> Missing imputation</a></li>
 <li class="chapter" data-level="5.1.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#normality-correction"><i class="fa fa-check"></i><b>5.1.3</b> Normality correction</a></li>
@@ -154,7 +160,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.8" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas---ctdquerier"><i class="fa fa-check"></i><b>5.1.8</b> ExWAS - CTDquerier</a></li>
 <li class="chapter" data-level="5.1.9" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#multivariate-exwas"><i class="fa fa-check"></i><b>5.1.9</b> Multivariate ExWAS</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a><ul>
+<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#association-analysis"><i class="fa fa-check"></i><b>5.2.1</b> Association analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
 </ul></li>
@@ -180,34 +187,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1">
+<div id="setup" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Setup</h1>
 <p>In order to download and setup the environment to launch exposomeShiny, the latest version of the software has to be downloaded from GitHub. To do so open a new RStudio session. Run the following code on the console once the working directory has been setup.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="co"># Set working directory</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">      </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="co"># Download zip</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="co"># Unzip the .zip to the working directory</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="co"># Set the working directory inside the downloaded folder</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1"></a>  <span class="co"># Set working directory</span></span>
+<span id="cb1-2"><a href="setup.html#cb1-2"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</span>
+<span id="cb1-3"><a href="setup.html#cb1-3"></a>      </span>
+<span id="cb1-4"><a href="setup.html#cb1-4"></a>  <span class="co"># Download zip</span></span>
+<span id="cb1-5"><a href="setup.html#cb1-5"></a><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb1-6"><a href="setup.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="setup.html#cb1-7"></a>  <span class="co"># Unzip the .zip to the working directory</span></span>
+<span id="cb1-8"><a href="setup.html#cb1-8"></a><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb1-9"><a href="setup.html#cb1-9"></a></span>
+<span id="cb1-10"><a href="setup.html#cb1-10"></a>  <span class="co"># Set the working directory inside the downloaded folder</span></span>
+<span id="cb1-11"><a href="setup.html#cb1-11"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</span></code></pre></div>
 Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the <code>Rproj</code> file by clicking it on the Files explorer of RStudio.
 <center>
-<img src="images/setup1.png" alt="Source files" />
+<img src="images/setup1.png" title="fig:" alt="Source files" />
 </center>
 <p>Once the project is loaded, run the following code to install <code>renv</code> if it’s not present on your R packages library and load the dependencies of exposomeShiny on this R session.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;renv&quot;</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">renv<span class="op">::</span><span class="kw">restore</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;renv&quot;</span>)</span>
+<span id="cb2-2"><a href="setup.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="setup.html#cb2-3"></a>renv<span class="op">::</span><span class="kw">restore</span>()</span></code></pre></div>
 <p>Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the <code>ui.R</code> or the <code>server.R</code> files that are inside the <code>R</code> folder and press <code>Run App</code>.</p>
 <center>
-<img src="images/setup2.png" alt="Start Shiny application" />
+<img src="images/setup2.png" title="fig:" alt="Start Shiny application" />
 </center>
 <p>Or the other option is to input the following command on the console.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="setup.html#cb3-1"></a>shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</span></code></pre></div>
 
 </div>
             </section>
