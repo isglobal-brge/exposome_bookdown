@@ -1,3 +1,0 @@
-[
-["index.html", "exposomeShiny User Guide 1 Introduction", " exposomeShiny User Guide Escribà Montagut, Xavier; Gonzalez, Juan R. 2020-03-26 1 Introduction exposomeShiny is a data analysis toolbox with the following features: Data handling: imputation, LOD, transformation, … Exposome characterization Exposome-wide association analysis Multivariate association Omic data integration Post-omic data analysis: CTD database To do so, exposomeShiny relies on previously existent Bioconductor packages (rexposome, omicRexposome and CTDquerier), it uses them in a seamless way so the final user of exposomShiny can perform the same studies that would conduct using the Bioconductor packages but without writing a single line of code. "]
-]

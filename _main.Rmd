@@ -1,0 +1,381 @@
+--- 
+title: "exposomeShiny User Guide"
+author: "Escribà Montagut, Xavier; Gonzalez, Juan R."
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  bookdown::gitbook: default
+bibliography:
+- book.bib
+- packages.bib
+link-citations: yes
+biblio-style: apalike
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Introduction
+
+exposomeShiny is a data analysis toolbox with the following features:
+
++ Data handling: imputation, LOD, transformation, ...
++ Exposome characterization
++ Exposome-wide association analysis
++ Multivariate association
++ Omic data integration
++ Post-omic data analysis: CTD database
+
+To do so, exposomeShiny relies on previously existent Bioconductor packages (rexposome, omicRexposome and CTDquerier), it uses them in a seamless way so the final user of exposomShiny can perform the same studies that would conduct using the Bioconductor packages but without writing a single line of code.
+
+<!--chapter:end:index.Rmd-->
+
+# Setup
+
+In order to download and setup the environment to launch exposomeShiny, the latest version of the software has to be downloaded from GitHub. To do so open a new RStudio session. Run the following code on the console once the working directory has been setup.
+
+```{r setup_chunk_1}
+  # Set working directory
+setwd(dir = "/some/path/")
+      
+  # Download zip
+download.file(url = "https://github.com/isglobal-brge/exposomeShiny/archive/master.zip", destfile = "master.zip")
+
+  # Unzip the .zip to the working directory
+unzip(zipfile = "master.zip")
+
+  # Set the working directory inside the downloaded folder
+setwd(dir = "/some/path/exposomeShiny-master")
+```
+
+Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio.
+<center>
+![Source files](images/setup1.png)
+</center>
+
+Once the project is loaded, run the following code to install `renv` if it's not present on your R packages library and load the dependencies of exposomeShiny on this R session.
+
+```{r}
+install.packages("renv")
+
+renv::restore()
+```
+
+Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`.
+
+<center>
+![Start Shiny application](images/setup2.png)
+</center>
+
+Or the other option is to input the following command on the console.
+
+```{r}
+shiny::runApp('R')
+```
+
+<!--chapter:end:01-setup.Rmd-->
+
+# Data sets
+
+## Exposome dataset
+The exposome is composed of three different files (in `*.csv` format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
+
++ The `exposures` file contains the measures of each exposure for all the individuals included on the analysis. It is a matrix-like file having a row per individual and a column per exposures. It must includes a column with the subject’s identifier.
++ The `description` file contains a row for each exposure and, at last, defined the families of exposures. Usually, this file incorporates a description of the exposures, the matrix where it was obtained and the units of measurement among others.
++ The `phenotypes` file contains the covariates to be included in the analysis as well as the health outcomes of interest. It contains a row per individual included in the analysis and a column for each covariate and outcome. Moreover, it must include a column with the individual’s identifier.
+
+A visual representation of the three matrices and how they correlate is the following.
+
+<center>
+![](images/exposome_dataset_struct.png)
+</center>
+
+Exposures data file example:
+
+```
+id    bde100  bde138  bde209  PFOA    ...
+sub01  2.4665  0.7702  1.6866  2.0075 ...
+sub02  0.7799  1.4147  1.2907  1.0153 ...  
+sub03 -1.6583 -0.9851 -0.8902 -0.0806 ... 
+sub04 -1.0812 -0.6639 -0.2988 -0.4268 ... 
+sub05 -0.2842 -0.1518 -1.5291 -0.7365 ... 
+...   ...     ...     ...     ...
+```
+
+Description data file example:
+
+```
+exposure  family  matrix         description
+bde100    PBDEs   colostrum       BDE 100 - log10
+bde138    PBDEs   colostrum       BDE 138 - log10
+bde209    PBDEs   colostrum       BDE 209 - log10
+PFOA      PFAS    cord blood      PFOA - log10
+PFNA      PFAS    cord blood      PFNA - log10
+PFOA      PFAS    maternal serum  PFOA - log10
+PFNA      PFAS    maternal serum  PFNA - log10
+hg        Metals  cord blood      hg - log 10
+Co        Metals  urine           Co (creatinine) - log10
+Zn        Metals  urine           Zn (creatinine) - log10
+Pb        Metals  urine           Pb (creatinine) - log10
+THM       Water   ---             Average total THM uptake - log10
+CHCL3     Water   ---             Average Chloroform uptake - log10
+BROM      Water   ---             Average Brominated THM uptake - log10
+NO2       Air     ---             NO2 levels whole pregnancy- log10
+Ben       Air     ---             Benzene levels whole pregnancy- log10
+```
+
+Phenotypes data file example:
+
+```
+id    asthma   BMI      sex  age  ...
+sub01 control  23.2539  boy  4    ...
+sub02 asthma   24.4498  girl 5    ...
+sub03 asthma   15.2356  boy  4    ...
+sub04 control  25.1387  girl 4    ...
+sub05 control  22.0477  boy  5    ...
+...   ...      ...      ...  ...
+```
+
+## Omics dataset
+
+The omics data inputed to the Shiny must be provided as an `*.RData`. This file has to contain an ExpressionSet, which is an S4 object. This object is a data container of the Bioconductor toolset.
+
+For further information on ExpressionSet and how to create and manipulate them, please visit the [official documentation](https://www.bioconductor.org/packages/devel/bioc/vignettes/Biobase/inst/doc/ExpressionSetIntroduction.pdf) and this [ selected vignette](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html).
+
+<!--chapter:end:02-real_ds.Rmd-->
+
+# Bioconductor packages
+
+This Shiny application is a front end support for other Bioconductor packages in order to provide a comfortable environment on to conduct different analysis with those packages. In concrete the packages are [rexposome](https://www.bioconductor.org/packages/release/bioc/html/rexposome.html), [omicRexposome](https://bioconductor.org/packages/release/bioc/html/omicRexposome.html) and [CTDquerier](http://www.bioconductor.org/packages/release/bioc/html/CTDquerier.html).
+
+## rexposome
+Rexposome is a package that allows to explore the exposome and to perform association analyses between exposures and health outcomes.
+
+## omicRexposome
+OmicRexposome is a package that systematizes the association evaluation between exposures and omic data, taking advantage of MultiDataSet for coordinated data management, rexposome for exposome data definition and limma for association testing. Also to perform data integration mixing exposome and omic data using multi co-inherent analysis (omicade4) and multi-canonical correlation analysis (PMA).
+
+## CTDquerier
+CTDquerier is a package to retrieve and visualize data from the [Comparative Toxicogenomics Database](http://ctdbase.org/). The downloaded data is formated as DataFrames for further downstream analyses.
+
+<!--chapter:end:03-bioc_packages.Rmd-->
+
+# Analysis flowcharts
+
+## Exposome analysis
+
+As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an `R` script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on rexposomeShiny, even though it's a seamless and codeless integration of the packages there's still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.
+
+### LOD imputation
+<center>
+![](images/analysis1_1.png)
+</center>
+
+Input the exposures, description and phenotypes files and load them into the application.
+
+![](images/analysis1_2.png)
+If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting "Random imputation" on the imputation method in order to imputate with random values instead of LOD/sqrt(2).
+
+![](images/analysis1_3.png)
+
+
+### Missing imputation
+
+<center>
+![](images/analysis2_1.png)
+</center>
+
+Once the dataset is loaded into the Shiny, look at the "Missing Data" tab to check the percentages of missing data for each exposure present.
+
+![](images/analysis2_2.png)
+
+To impute the missing values select "Impute missing values using mice". After the process finishes, the expect output should be a new missing data graph where there's no missing of any exposure.
+
+![](images/analysis2_3.png)
+The new imputed exposures set can be downloaded as a `*.csv` file, please note that the downloaded file just assigns numbers to the `idnum` column, if the data you are using has different `idnum` format it's needed to format it properly so that it matches the `idnum` on the phenotypes input file when inputting it to the Shiny. 
+
+### Normality correction
+
+<center>
+![](images/analysis3_1.png)
+</center>
+
+Once the dataset is loaded into the Shiny, look at the "Check Normality" tab to check which exposures are not normal (Normality = false). By selection from the table the desired exposure and clicking the "Plot histogram of selected exposure", as the label of the button implies, a histogram of the selected exposure from the table can be seen.
+
+![](images/analysis3_2.png)
+
+By clicking the "Show false" button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the "Normalization method" column) by double clicking on the desired row. There are three possible methods to use, "log" (default), "^1/3" and "sqrt". If no method is desired to be applied to an exposure input "none".
+
+![](images/analysis3_3.png)
+
+Click "Normalize" and the normalization method selected will be applied, the table on the "Check Normality" tab will be updated with the results of the normalization.
+
+### Exposures description
+
+<center>
+![](images/analysis4_1.png)
+</center>
+
+To see all the insights of the exposures dataset loaded into the Shiny, once loaded it check the exposures description tab, there are three options to dig into the dataset, the family (family of the exposure) to visualize and two grouping factors (phenotypes).
+
+![](images/analysis4_2.png)
+
+### PCA Analysis
+
+<center>
+![](images/analysis5_1.png)
+</center>
+
+To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it's important noting (as it's already stated on the Shiny) that the grouping parameter only works when the set is selected to "samples".
+
+![](images/analysis5_2.png)
+
+If the association of the PCA analysis with the exposures is desired to visualize, check the "PCA association with exposures" tab, there are two grouping methods to visualize, the phenotypes to principal components and the exposures to principal components.
+
+![](images/analysis5_3.png)
+
+### Clusterization and correlation of exposures
+
+<center>
+![](images/analysis6_1.png)
+</center>
+
+To see the results of the exposure correlation and clustering, select the corresponding tab to each analysis. For the exposure correlation analysis there are two visualizations, the matrix representation and the circos.
+
+![](images/analysis6_2.png)
+
+![](images/analysis6_3.png)
+
+### ExWAS
+
+<center>
+![](images/analysis7_1.png)
+</center>
+
+To perform an ExWAS (exposome-wide association) study, check the ExWAS tab and select the addecuate parameters for the ExWAS plot, there are two different plot representations, the output variable to choose (phenotype), the output family and as many covariables (phenotypes) as the user wants. There are internal checks to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial.
+
+
+![](images/analysis7_2.png)
+
+### ExWAS - CTDquerier
+
+The ExWAS tab also is able to perform a CTD query of the desired chemicals.
+
+<center>
+![](images/analysis7_3.png)
+</center>
+
+To perform a CTDquerier of chemicals with the results of the ExWAS, click on the desired exposure to preload it into the query, when clicked, a chemical name with it's associated P-Value will appear on the table on the right, if that's the desired chemical to add to the query list click "Add to querier". In the case of adding an unwanted chemical to the query list, select it (or them) by clicking on the Querier list and click on "Remove from querier". 
+
+
+![](images/analysis7_4.png)
+
+
+![](images/analysis7_5.png)
+
+
+
+To do the query of the chemicals to de CTD database click on "Query on the CTD gene database" and see the results on the "Chemical CTDquerier Results" subtab. It's important noting that on the "Kegg pathways" and "Go terms" the input field corresponds to the negative exponent of the filter.
+
+![](images/analysis7_6.png)
+
+### Multivariate ExWAS
+
+<center>
+![](images/analysis8_1.png)
+</center>
+
+To perform a multivariate ExWAS study, check the Multivariate ExWAS tab and select the desired output parameter, click on run model to generate the plot. As on the ExWAS plot options there's implemented an internal check to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial, as the diagrams states if the dataset has not been imputed the missings, it will automatically do it to perform the Multivariate ExWAS, however when closing the plot the imputed dataset will be removed from the environment, so all the other studies performed afterwards will not be altered.
+
+![](images/analysis8_2.png)
+![](images/analysis8_3.png)
+
+## Exposome-Omic analysis
+
+It's important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the `server.R` file.
+
+```{r}
+  # the "30" refers to 30MB, change as needed
+options(shiny.maxRequestSize=30*1024^2)
+```
+
+
+### Association analysis
+
+<center>
+![](images/analysis9_1.png)
+</center>
+
+Do first the proceeding of exposome data load and corresponding treatment if desired, then proceed to load the omic dataset on the "Data Entry" subtab of the "Omic Data" tab. The omic data should be provided as a `*.RData` file.
+
+![](images/analysis9_2.png)
+
+The exposome dataset can be subseted by families, on the "Exposome subsetting" subtab select the families that are desired to be included in this new set to study, if all the families are desired just don't input any and proceed to click the "Subset and add", which will trigger the action to combine the subsetted (or not) exposome dataset with the provided omic dataset.
+
+![](images/analysis9_3.png)
+
+Select the variables for the association analysis and if SVA is wanted on the "Association model" subtab.
+
+![](images/analysis9_4.png)
+
+There are tabs to visualize the results of running the association model, all of the are on the "Model visualization" subtab. The "Results table" shows the gene, log of the fold change, p-value and adjusted p-value.
+
+![](images/analysis9_5.png)
+
+The "Significant hits" shows the exposure, hits and lambda.
+
+![](images/analysis9_6.png)
+
+The QQ Plot shows a QQ plot (expected vs. observed -lo10(p-value)) for the selected exposure.
+
+![](images/analysis9_7.png)
+
+The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.
+
+![](images/analysis9_8.png)
+
+### CTD querier
+
+![](images/analysis10_1.png)
+
+To perform a CTD querier study of the exposome-omic analysis, as before, load both datasets and run the desired model with them, check the Volcan plot and click on the desired point on the Volcan plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click "Add to querier". It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
+
+![](images/analysis10_2.png)
+
+If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click "Remove from querier". Click on "Query selected genes on the CTD gene database" to perform the query of all the symbols of the querier list.
+
+![](images/analysis10_3.png)
+
+To visualize the results of the query, go to the "CTDquerier results" subtab. There are six tabs showing different results interpretations. First there's the "Lost & found" tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
+
+![](images/analysis10_4.png)
+
+The diseases tab shows a table of all the associated diseases found on the CTD database.
+
+![](images/analysis10_5.png)
+
+The curated diseases tab shows the table of associated diseases but only shows the ones with direct evidence.
+
+![](images/analysis10_6.png)
+
+The association tab shows information about all the direct evidence associated diseases. Select the disease of interest to see the score and reference count of it.
+
+![](images/analysis10_7.png)
+
+The inference score tab shows the inference score for each gene for a selected disease, the filter parameters puts out the genes with an inference score lower than the selected filter.
+
+![](images/analysis10_8.png)
+
+The association matrix tab shows a matrix of genes vs. chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.
+
+![](images/analysis10_9.png)
+
+<!--chapter:end:04-analysis.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:05-references.Rmd-->
+
