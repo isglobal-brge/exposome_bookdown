@@ -2,13 +2,14 @@
 title: "exposomeShiny User Guide"
 author: "Escribà Montagut, Xavier; Gonzalez, Juan R."
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-output_dir: "docs"
 bibliography:
 - book.bib
 - packages.bib
+documentclass: book
+output:
+  bookdown::gitbook: default
 link-citations: yes
+site: bookdown::bookdown_site
 biblio-style: apalike
 ---
 
