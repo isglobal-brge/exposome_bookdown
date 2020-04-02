@@ -111,7 +111,7 @@
 
 \title{exposomeShiny User's Guide}
 \author{Escribà Montagut, Xavier; González, Juan R.}
-\date{2020-03-31}
+\date{2020-04-02}
 
 \begin{document}
 \maketitle
@@ -488,6 +488,39 @@ The inference score tab shows the inference score for each gene for a selected d
 The association matrix tab shows a matrix of genes vs.~chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.
 
 \includegraphics{images/analysis10_9.png}
+
+\hypertarget{general-application-functionalities}{%
+\chapter{General application functionalities}\label{general-application-functionalities}}
+
+This whole Shiny application serves the purpose to perform a various number of exposome and omic analysis with an input set of data. To perform this analysis some operations can performed on the inputed dataset prior to the analysis and so in order to follow track of what exactly has been done or what is loaded on the current session, there's implemented some sort of state tracker inside the Shiny application. In order to access it, press the icon on the top right of the application
+
+\includegraphics{images/general1.png}
+
+When clicking it a dropdown menu appears, inside there are seven different notifications:
+
+\begin{itemize}
+\tightlist
+\item
+  Exposome dataset: Turns to 100\% when an exposome dataset is loaded in the environment. Here's a graphical example.
+
+  \includegraphics{images/general2.png}
+
+  \includegraphics{images/general3.png}
+\item
+  LOD imputed: Turns to 100\% if the exposome dataset is LOD imputed.
+\item
+  Missing imputed: Turns to 100\% if the exposome dataset has the missings imputed.
+\item
+  Normality corrected: Turns to 100\% if the exposome dataset is normality corredted.
+\item
+  Omics dataset: Turns to 100\% when an omics dataset is loaded in the environment.
+\item
+  Subset: Turns to 100\% (and displays the subset family(ies)) when the exposome dataset is subseted.
+\item
+  Model: Turns to 100\% (and displays the association variable(s)) when a model is performed for an omics association analysis. Here's an example of a subset and model information.
+
+  \includegraphics{images/general4.png}
+\end{itemize}
 
 \bibliography{book.bib,packages.bib}
 
