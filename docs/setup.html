@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -184,31 +184,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">2</span> Setup</h1>
 <p>In order to download and setup the environment to launch exposomeShiny, the latest version of the software has to be downloaded from GitHub. To do so open a new RStudio session. Run the following code on the console once the working directory has been setup.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="co"># Set working directory</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">      </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="co"># Download zip</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="co"># Unzip the .zip to the working directory</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="co"># Set the working directory inside the downloaded folder</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">  <span class="co"># Set working directory</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3">      </a>
+<a class="sourceLine" id="cb1-4" title="4">  <span class="co"># Download zip</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">  <span class="co"># Unzip the .zip to the working directory</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10">  <span class="co"># Set the working directory inside the downloaded folder</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</a></code></pre></div>
 Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the <code>Rproj</code> file by clicking it on the Files explorer of RStudio.
 <center>
-<img src="images/setup1.png" alt="Source files" />
+<img src="images/setup1.png" title="fig:" alt="Source files" />
 </center>
-<p>Once the project is loaded, run the following code to install <code>renv</code> if it’s not present on your R packages library and load the dependencies of exposomeShiny on this R session.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;renv&quot;</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">renv<span class="op">::</span><span class="kw">restore</span>()</a></code></pre></div>
+<p>Once the project is loaded, the file found on the source folder called <code>installer.R</code> has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">source</span>(<span class="st">&quot;installer.R&quot;</span>)</a></code></pre></div>
+<p>This is only needed on the first run, once completed it doesn’t need to be done prior to launching the application itself any other time.</p>
 <p>Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the <code>ui.R</code> or the <code>server.R</code> files that are inside the <code>R</code> folder and press <code>Run App</code>.</p>
 <center>
-<img src="images/setup2.png" alt="Start Shiny application" />
+<img src="images/setup2.png" title="fig:" alt="Start Shiny application" />
 </center>
 <p>Or the other option is to input the following command on the console.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</a></code></pre></div>
 
 </div>
             </section>

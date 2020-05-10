@@ -21,13 +21,13 @@ Now all the source files are downloaded to the location of chose and the working
 ![Source files](images/setup1.png)
 </center>
 
-Once the project is loaded, run the following code to install `renv` if it's not present on your R packages library and load the dependencies of exposomeShiny on this R session.
+Once the project is loaded, the file found on the source folder called `installer.R` has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.
 
 ```{r}
-install.packages("renv")
-
-renv::restore()
+source("installer.R")
 ```
+
+This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time.
 
 Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`.
 
