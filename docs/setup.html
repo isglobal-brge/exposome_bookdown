@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Setup | exposomeShiny User’s Guide</title>
   <meta name="description" content="2 Setup | exposomeShiny User’s Guide" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Setup | exposomeShiny User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-05-10" />
+<meta name="date" content="2020-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
-<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#pulling-the-official-docker-image-from-dockerhub"><i class="fa fa-check"></i><b>2.1</b> Pulling the official Docker image from DockerHub</a></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#downloading-the-source-files-installing-the-libraries-and-running-the-application"><i class="fa fa-check"></i><b>2.2</b> Downloading the source files, installing the libraries and running the application</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-sets.html"><a href="data-sets.html#exposome-dataset"><i class="fa fa-check"></i><b>3.1</b> Exposome dataset</a></li>
 <li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#omics-dataset"><i class="fa fa-check"></i><b>3.2</b> Omics dataset</a></li>
@@ -183,32 +186,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">2</span> Setup</h1>
-<p>In order to download and setup the environment to launch exposomeShiny, the latest version of the software has to be downloaded from GitHub. To do so open a new RStudio session. Run the following code on the console once the working directory has been setup.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">  <span class="co"># Set working directory</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3">      </a>
-<a class="sourceLine" id="cb1-4" title="4">  <span class="co"># Download zip</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">  <span class="co"># Unzip the .zip to the working directory</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9"></a>
-<a class="sourceLine" id="cb1-10" title="10">  <span class="co"># Set the working directory inside the downloaded folder</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</a></code></pre></div>
+<p>There are two different ways of seting up and using exposomeShiny</p>
+<div id="pulling-the-official-docker-image-from-dockerhub" class="section level2">
+<h2><span class="header-section-number">2.1</span> Pulling the official Docker image from DockerHub</h2>
+<p>The easiest way of using exposomeShiny is using Docker. There’s an official image on DockerHub to be downloaded and executed. This method is specially easy for users running Mac OS X / Linux on their machines, as Docker can be easily installed from the <a href="https://www.docker.com/get-started">official website</a>. For Windows Users there can be some problems if the version is not updated and/or it’s a Windows Home installation, there’s official documentation explaining <a href="https://docs.docker.com/docker-for-windows/install-windows-home/">how to install it</a>.</p>
+<p>For Windows users, once Docker has been installed, follow this two guides to be able to send bash commands to operate Docker containers <a href="https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/">1</a>, <a href="https://docs.docker.com/docker-for-windows/wsl/">2</a>.</p>
+<p>To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the <code>Docker Desktop</code> app and launch it).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">docker</span> run --rm -p 80:80 brgelab/exposome-shiny</a></code></pre></div>
+<p>This command will download the Docker image of exposomeShiny (be aware it weights ~ 3 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using exposomeShiny open your web browser and go to the site</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">localhost</span>:80</a></code></pre></div>
+<p>At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.</p>
+<p>Once the user has finished using exposomeShiny, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">docker</span> container ls</a></code></pre></div>
+<p>This will prompt all the running containers, find the one with the NAMES <code>brgelab/exposome-shiny</code> and copy it’s CONTAINER ID, then input the following bash command:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="ex">docker</span> stop xxxxxxxxxxxx</a></code></pre></div>
+<p>Where xxxxxxxxxxxx is the CONTAINER ID.</p>
+<p>To run the application again, just enter the first bash command (<code>docker run --rm -p 80:80 brgelab/exposome-shiny</code>), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="ex">docker</span> image rm brgelab/exposome-shiny</a></code></pre></div>
+</div>
+<div id="downloading-the-source-files-installing-the-libraries-and-running-the-application" class="section level2">
+<h2><span class="header-section-number">2.2</span> Downloading the source files, installing the libraries and running the application</h2>
+<p>The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure to install <a href="https://cran.r-project.org/bin/windows/Rtools/history.html">Rtools</a> to use this method.</p>
+<p>It is advised to always use the Docker method to use exposomeShiny, as it only requires installing Docker and running a single command to run exposomeShiny. This second method can yield to some installation errors on some machines and it’s overall less reliable, while Docker will always work.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">  <span class="co"># Set working directory</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">      </a>
+<a class="sourceLine" id="cb6-4" title="4">  <span class="co"># Download zip</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb6-6" title="6"></a>
+<a class="sourceLine" id="cb6-7" title="7">  <span class="co"># Unzip the .zip to the working directory</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb6-9" title="9"></a>
+<a class="sourceLine" id="cb6-10" title="10">  <span class="co"># Set the working directory inside the downloaded folder</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</a></code></pre></div>
 Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the <code>Rproj</code> file by clicking it on the Files explorer of RStudio.
 <center>
 <img src="images/setup1.png" title="fig:" alt="Source files" />
 </center>
 <p>Once the project is loaded, the file found on the source folder called <code>installer.R</code> has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">source</span>(<span class="st">&quot;installer.R&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">source</span>(<span class="st">&quot;installer.R&quot;</span>)</a></code></pre></div>
 <p>This is only needed on the first run, once completed it doesn’t need to be done prior to launching the application itself any other time.</p>
 <p>Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the <code>ui.R</code> or the <code>server.R</code> files that are inside the <code>R</code> folder and press <code>Run App</code>.</p>
 <center>
 <img src="images/setup2.png" title="fig:" alt="Start Shiny application" />
 </center>
 <p>Or the other option is to input the following command on the console.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</a></code></pre></div>
 
+</div>
 </div>
             </section>
 

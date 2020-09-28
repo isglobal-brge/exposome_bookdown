@@ -113,7 +113,7 @@
 
 \title{exposomeShiny User's Guide}
 \author{Escribà Montagut, Xavier; González, Juan R.}
-\date{2020-05-10}
+\date{2020-09-28}
 
 \begin{document}
 \maketitle
@@ -152,7 +152,65 @@ To do so, exposomeShiny relies on previously existent Bioconductor packages (rex
 \hypertarget{setup}{%
 \chapter{Setup}\label{setup}}
 
-In order to download and setup the environment to launch exposomeShiny, the latest version of the software has to be downloaded from GitHub. To do so open a new RStudio session. Run the following code on the console once the working directory has been setup.
+There are two different ways of seting up and using exposomeShiny
+
+\hypertarget{pulling-the-official-docker-image-from-dockerhub}{%
+\section{Pulling the official Docker image from DockerHub}\label{pulling-the-official-docker-image-from-dockerhub}}
+
+The easiest way of using exposomeShiny is using Docker. There's an official image on DockerHub to be downloaded and executed. This method is specially easy for users running Mac OS X / Linux on their machines, as Docker can be easily installed from the \href{https://www.docker.com/get-started}{official website}. For Windows Users there can be some problems if the version is not updated and/or it's a Windows Home installation, there's official documentation explaining \href{https://docs.docker.com/docker-for-windows/install-windows-home/}{how to install it}.
+
+For Windows users, once Docker has been installed, follow this two guides to be able to send bash commands to operate Docker containers \href{https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/}{1}, \href{https://docs.docker.com/docker-for-windows/wsl/}{2}.
+
+To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the \texttt{Docker\ Desktop} app and launch it).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker}\NormalTok{ run --rm -p 80:80 brgelab/exposome-shiny}
+\end{Highlighting}
+\end{Shaded}
+
+This command will download the Docker image of exposomeShiny (be aware it weights \textasciitilde{} 3 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using exposomeShiny open your web browser and go to the site
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{localhost}\NormalTok{:80}
+\end{Highlighting}
+\end{Shaded}
+
+At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.
+
+Once the user has finished using exposomeShiny, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker}\NormalTok{ container ls}
+\end{Highlighting}
+\end{Shaded}
+
+This will prompt all the running containers, find the one with the NAMES \texttt{brgelab/exposome-shiny} and copy it's CONTAINER ID, then input the following bash command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker}\NormalTok{ stop xxxxxxxxxxxx}
+\end{Highlighting}
+\end{Shaded}
+
+Where xxxxxxxxxxxx is the CONTAINER ID.
+
+To run the application again, just enter the first bash command (\texttt{docker\ run\ -\/-rm\ -p\ 80:80\ brgelab/exposome-shiny}), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker}\NormalTok{ image rm brgelab/exposome-shiny}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{downloading-the-source-files-installing-the-libraries-and-running-the-application}{%
+\section{Downloading the source files, installing the libraries and running the application}\label{downloading-the-source-files-installing-the-libraries-and-running-the-application}}
+
+The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure to install \href{https://cran.r-project.org/bin/windows/Rtools/history.html}{Rtools} to use this method.
+
+It is advised to always use the Docker method to use exposomeShiny, as it only requires installing Docker and running a single command to run exposomeShiny. This second method can yield to some installation errors on some machines and it's overall less reliable, while Docker will always work.
 
 \begin{Shaded}
 \begin{Highlighting}[]
