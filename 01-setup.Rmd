@@ -2,51 +2,9 @@
 
 There are two different ways of seting up and using exposomeShiny
 
-## Pulling the official Docker image from DockerHub
-
-The easiest way of using exposomeShiny is using Docker. There's an official image on DockerHub to be downloaded and executed. This method is specially easy for users running Mac OS X / Linux on their machines, as Docker can be easily installed from the [official website](https://www.docker.com/get-started). For Windows Users there can be some problems if the version is not updated and/or it's a Windows Home installation, there's official documentation explaining [how to install it](https://docs.docker.com/docker-for-windows/install-windows-home/).
-
-For Windows users, once Docker has been installed, follow this two guides to be able to send bash commands to operate Docker containers [1](https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/), [2](https://docs.docker.com/docker-for-windows/wsl/).
-
-To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the `Docker Desktop` app and launch it).
-
-```{bash}
-docker run --rm -p 80:80 brgelab/exposome-shiny
-```
-
-This command will download the Docker image of exposomeShiny (be aware it weights ~ 3 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using exposomeShiny open your web browser and go to the site
-
-```{bash}
-localhost:80
-```
-
-At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.
-
-Once the user has finished using exposomeShiny, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):
-
-```{bash}
-docker container ls
-```
-
-This will prompt all the running containers, find the one with the NAMES `brgelab/exposome-shiny` and copy it's CONTAINER ID, then input the following bash command:
-
-```{bash}
-docker stop xxxxxxxxxxxx
-```
-
-Where xxxxxxxxxxxx is the CONTAINER ID.
-
-To run the application again, just enter the first bash command (`docker run --rm -p 80:80 brgelab/exposome-shiny`), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:
-
-```{bash}
-docker image rm brgelab/exposome-shiny
-```
-
 ## Downloading the source files, installing the libraries and running the application
 
-The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html) to use this method.
-
-It is advised to always use the Docker method to use exposomeShiny, as it only requires installing Docker and running a single command to run exposomeShiny. This second method can yield to some installation errors on some machines and it's overall less reliable, while Docker will always work.
+The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html) is installed to use this method.
 
 ```{r setup_chunk_1}
   # Set working directory
@@ -86,3 +44,42 @@ Or the other option is to input the following command on the console.
 ```{r}
 shiny::runApp('R')
 ```
+
+## Pulling the official Docker image from DockerHub
+
+If there's any troubble downloading the required R packages to make exposomeShiny work, there's the option of using Docker. It has the disadvantage of being a little bit difficult to install on a Windows machine, however, it's extremely simple on a Mac OS X / Linux environment. For the Windows users refer to the following links for instructions on how to install Docker and setup you machine to run WSL2 and launch bash commands on Windows [1](https://docs.docker.com/docker-for-windows/install-windows-home/),  [2](https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/), [3](https://docs.docker.com/docker-for-windows/wsl/).
+
+To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the `Docker Desktop` app and launch it).
+
+```{bash}
+docker run --rm -p 80:80 brgelab/exposome-shiny
+```
+
+This command will download the Docker image of exposomeShiny (be aware it weights ~ 3 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using exposomeShiny open your web browser and go to the site
+
+```{bash}
+localhost:80
+```
+
+At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.
+
+Once the user has finished using exposomeShiny, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):
+
+```{bash}
+docker container ls
+```
+
+This will prompt all the running containers, find the one with the NAMES `brgelab/exposome-shiny` and copy it's CONTAINER ID, then input the following bash command:
+
+```{bash}
+docker stop xxxxxxxxxxxx
+```
+
+Where xxxxxxxxxxxx is the CONTAINER ID.
+
+To run the application again, just enter the first bash command (`docker run --rm -p 80:80 brgelab/exposome-shiny`), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:
+
+```{bash}
+docker image rm brgelab/exposome-shiny
+```
+

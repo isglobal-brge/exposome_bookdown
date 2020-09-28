@@ -154,12 +154,57 @@ To do so, exposomeShiny relies on previously existent Bioconductor packages (rex
 
 There are two different ways of seting up and using exposomeShiny
 
+\hypertarget{downloading-the-source-files-installing-the-libraries-and-running-the-application}{%
+\section{Downloading the source files, installing the libraries and running the application}\label{downloading-the-source-files-installing-the-libraries-and-running-the-application}}
+
+The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure \href{https://cran.r-project.org/bin/windows/Rtools/history.html}{Rtools} is installed to use this method.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{# Set working directory}
+\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/"}\NormalTok{)}
+      
+  \CommentTok{# Download zip}
+\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url =} \StringTok{"https://github.com/isglobal-brge/exposomeShiny/archive/master.zip"}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{"master.zip"}\NormalTok{)}
+
+  \CommentTok{# Unzip the .zip to the working directory}
+\KeywordTok{unzip}\NormalTok{(}\DataTypeTok{zipfile =} \StringTok{"master.zip"}\NormalTok{)}
+
+  \CommentTok{# Set the working directory inside the downloaded folder}
+\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/exposomeShiny-master"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the \texttt{Rproj} file by clicking it on the Files explorer of RStudio.
+
+\includegraphics{images/setup1.png}
+
+Once the project is loaded, the file found on the source folder called \texttt{installer.R} has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"installer.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time.
+
+Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the \texttt{ui.R} or the \texttt{server.R} files that are inside the \texttt{R} folder and press \texttt{Run\ App}.
+
+\includegraphics{images/setup2.png}
+
+Or the other option is to input the following command on the console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shiny}\OperatorTok{::}\KeywordTok{runApp}\NormalTok{(}\StringTok{'R'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{pulling-the-official-docker-image-from-dockerhub}{%
 \section{Pulling the official Docker image from DockerHub}\label{pulling-the-official-docker-image-from-dockerhub}}
 
-The easiest way of using exposomeShiny is using Docker. There's an official image on DockerHub to be downloaded and executed. This method is specially easy for users running Mac OS X / Linux on their machines, as Docker can be easily installed from the \href{https://www.docker.com/get-started}{official website}. For Windows Users there can be some problems if the version is not updated and/or it's a Windows Home installation, there's official documentation explaining \href{https://docs.docker.com/docker-for-windows/install-windows-home/}{how to install it}.
-
-For Windows users, once Docker has been installed, follow this two guides to be able to send bash commands to operate Docker containers \href{https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/}{1}, \href{https://docs.docker.com/docker-for-windows/wsl/}{2}.
+If there's any troubble downloading the required R packages to make exposomeShiny work, there's the option of using Docker. It has the disadvantage of being a little bit difficult to install on a Windows machine, however, it's extremely simple on a Mac OS X / Linux environment. For the Windows users refer to the following links for instructions on how to install Docker and setup you machine to run WSL2 and launch bash commands on Windows \href{https://docs.docker.com/docker-for-windows/install-windows-home/}{1}, \href{https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/}{2}, \href{https://docs.docker.com/docker-for-windows/wsl/}{3}.
 
 To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the \texttt{Docker\ Desktop} app and launch it).
 
@@ -202,55 +247,6 @@ To run the application again, just enter the first bash command (\texttt{docker\
 \begin{Shaded}
 \begin{Highlighting}[]
 \ExtensionTok{docker}\NormalTok{ image rm brgelab/exposome-shiny}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{downloading-the-source-files-installing-the-libraries-and-running-the-application}{%
-\section{Downloading the source files, installing the libraries and running the application}\label{downloading-the-source-files-installing-the-libraries-and-running-the-application}}
-
-The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure to install \href{https://cran.r-project.org/bin/windows/Rtools/history.html}{Rtools} to use this method.
-
-It is advised to always use the Docker method to use exposomeShiny, as it only requires installing Docker and running a single command to run exposomeShiny. This second method can yield to some installation errors on some machines and it's overall less reliable, while Docker will always work.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{# Set working directory}
-\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/"}\NormalTok{)}
-      
-  \CommentTok{# Download zip}
-\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url =} \StringTok{"https://github.com/isglobal-brge/exposomeShiny/archive/master.zip"}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{"master.zip"}\NormalTok{)}
-
-  \CommentTok{# Unzip the .zip to the working directory}
-\KeywordTok{unzip}\NormalTok{(}\DataTypeTok{zipfile =} \StringTok{"master.zip"}\NormalTok{)}
-
-  \CommentTok{# Set the working directory inside the downloaded folder}
-\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/exposomeShiny-master"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the \texttt{Rproj} file by clicking it on the Files explorer of RStudio.
-
-\includegraphics{images/setup1.png}
-
-Once the project is loaded, the file found on the source folder called \texttt{installer.R} has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{source}\NormalTok{(}\StringTok{"installer.R"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time.
-
-Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the \texttt{ui.R} or the \texttt{server.R} files that are inside the \texttt{R} folder and press \texttt{Run\ App}.
-
-\includegraphics{images/setup2.png}
-
-Or the other option is to input the following command on the console.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shiny}\OperatorTok{::}\KeywordTok{runApp}\NormalTok{(}\StringTok{'R'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
