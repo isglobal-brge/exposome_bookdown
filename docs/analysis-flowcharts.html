@@ -197,7 +197,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="images/analysis1_1.png" />
 </center>
-<p>Input the exposures, description and phenotypes files and load them into the application. On the right of the file browsers, there are four text fields to input the following:</p>
+<p>Input the exposures, description and phenotypes files and load them into the application.</p>
+<p><img src="images/analysis1_2.png" />
+Once the tables are read, four selectors will appear on the right side of the file browsers, this selectors are fed the column names of the respective tables loaded into the application:</p>
 <ul>
 <li>Column name in the <em>description</em> file that contains the exposures</li>
 <li>Column name in the <em>description</em> file that contains the families<br />
@@ -205,9 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Column name in the <em>exposures</em> file that contains the id’s</li>
 <li>Column name in the <em>phenotypes</em> file that contains the id’s</li>
 </ul>
-<p>If the column names do not match the selected data files a warning error will be prompted to the user to check the inputs.</p>
-<p><img src="images/analysis1_2.png" />
-If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values instead of LOD/sqrt(2).</p>
+<p>If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values instead of LOD/sqrt(2).</p>
 <p><img src="images/analysis1_3.png" /></p>
 </div>
 <div id="missing-imputation" class="section level3">

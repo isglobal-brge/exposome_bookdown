@@ -358,7 +358,10 @@ As any user would need to do using the Bioconductor packages (rexposome, omicRex
 
 \includegraphics{images/analysis1_1.png}
 
-Input the exposures, description and phenotypes files and load them into the application. On the right of the file browsers, there are four text fields to input the following:
+Input the exposures, description and phenotypes files and load them into the application.
+
+\includegraphics{images/analysis1_2.png}
+Once the tables are read, four selectors will appear on the right side of the file browsers, this selectors are fed the column names of the respective tables loaded into the application:
 
 \begin{itemize}
 \tightlist
@@ -372,9 +375,6 @@ Input the exposures, description and phenotypes files and load them into the app
   Column name in the \emph{phenotypes} file that contains the id's
 \end{itemize}
 
-If the column names do not match the selected data files a warning error will be prompted to the user to check the inputs.
-
-\includegraphics{images/analysis1_2.png}
 If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting ``Random imputation'' on the imputation method in order to imputate with random values instead of LOD/sqrt(2).
 
 \includegraphics{images/analysis1_3.png}
