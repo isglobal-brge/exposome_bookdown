@@ -2,24 +2,32 @@
 
 ## Exposome analysis
 
-As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an `R` script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on rexposomeShiny, even though it's a seamless and codeless integration of the packages there's still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.
+As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an `R` script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on exposomeShiny, even though it's a seamless and codeless integration of the packages there's still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.
 
 ### LOD imputation
 <center>
 ![](images/analysis1_1.png)
 </center>
 
-Input the exposures, description and phenotypes files and load them into the application. 
+Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as `csv` or `txt`, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs. 
 
 ![](images/analysis1_2.png)
-Once the tables are read, four selectors will appear on the right side of the file browsers, this selectors are fed the column names of the respective tables loaded into the application:
+Once the tables are read, six input fields will appear on the right side of the file browsers, they are to select the following parameters:
 
   + Column name in the *description* file that contains the exposures
   + Column name in the *description* file that contains the families    
   + Column name in the *exposures* file that contains the id's
   + Column name in the *phenotypes* file that contains the id's
+  + The treshold of to select between continuous or factor exposures. More than this number of unique items will be considered as 'continuous'
+  + The encoding to search for limit of detection (LOD) missings. It can be either a number (example: `-1`) or a string (example: `LOD`).
+  
+This is illustrated on the following figure.
 
-If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting "Random imputation" on the imputation method in order to imputate with random values instead of LOD/sqrt(2).
+![](images/analysis1_2_2.png)
+  
+Once the fields are completed, please press the *Validate selections* button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads *Load selected data to analye it* will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.
+
+If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting "Random imputation" on the imputation method in order to imputate with random values instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the `!` symbol at the top bar of the application.
 
 ![](images/analysis1_3.png)
 

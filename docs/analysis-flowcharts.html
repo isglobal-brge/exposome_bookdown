@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Analysis flowcharts | exposomeShiny User’s Guide</title>
   <meta name="description" content="5 Analysis flowcharts | exposomeShiny User’s Guide" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Analysis flowcharts | exposomeShiny User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-10-13" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,13 +50,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -191,23 +188,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Analysis flowcharts</h1>
 <div id="exposome-analysis" class="section level2">
 <h2><span class="header-section-number">5.1</span> Exposome analysis</h2>
-<p>As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an <code>R</code> script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on rexposomeShiny, even though it’s a seamless and codeless integration of the packages there’s still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.</p>
+<p>As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an <code>R</code> script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on exposomeShiny, even though it’s a seamless and codeless integration of the packages there’s still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.</p>
 <div id="lod-imputation" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> LOD imputation</h3>
 <center>
 <img src="images/analysis1_1.png" />
 </center>
-<p>Input the exposures, description and phenotypes files and load them into the application.</p>
+<p>Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as <code>csv</code> or <code>txt</code>, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.</p>
 <p><img src="images/analysis1_2.png" />
-Once the tables are read, four selectors will appear on the right side of the file browsers, this selectors are fed the column names of the respective tables loaded into the application:</p>
+Once the tables are read, six input fields will appear on the right side of the file browsers, they are to select the following parameters:</p>
 <ul>
 <li>Column name in the <em>description</em> file that contains the exposures</li>
 <li>Column name in the <em>description</em> file that contains the families<br />
 </li>
 <li>Column name in the <em>exposures</em> file that contains the id’s</li>
 <li>Column name in the <em>phenotypes</em> file that contains the id’s</li>
+<li>The treshold of to select between continuous or factor exposures. More than this number of unique items will be considered as ‘continuous’</li>
+<li>The encoding to search for limit of detection (LOD) missings. It can be either a number (example: <code>-1</code>) or a string (example: <code>LOD</code>).</li>
 </ul>
-<p>If exposomeShiny detects LODs (limit of detection) on the exposures file (exposures with value: -1), it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values instead of LOD/sqrt(2).</p>
+<p>This is illustrated on the following figure.</p>
+<p><img src="images/analysis1_2_2.png" /></p>
+<p>Once the fields are completed, please press the <em>Validate selections</em> button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads <em>Load selected data to analye it</em> will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.</p>
+<p>If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the <code>!</code> symbol at the top bar of the application.</p>
 <p><img src="images/analysis1_3.png" /></p>
 </div>
 <div id="missing-imputation" class="section level3">
@@ -292,8 +294,8 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <div id="exposome-omic-analysis" class="section level2">
 <h2><span class="header-section-number">5.2</span> Exposome-Omic analysis</h2>
 <p>It’s important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the <code>server.R</code> file.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-flowcharts.html#cb12-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
-<span id="cb12-2"><a href="analysis-flowcharts.html#cb12-2"></a><span class="kw">options</span>(<span class="dt">shiny.maxRequestSize=</span><span class="dv">30</span><span class="op">*</span><span class="dv">1024</span><span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">options</span>(<span class="dt">shiny.maxRequestSize=</span><span class="dv">30</span><span class="op">*</span><span class="dv">1024</span><span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <div id="association-analysis" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Association analysis</h3>
 <center>
