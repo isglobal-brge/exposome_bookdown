@@ -12,7 +12,7 @@ As any user would need to do using the Bioconductor packages (rexposome, omicRex
 Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as `csv` or `txt`, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs. 
 
 ![](images/analysis1_2.png)
-Once the tables are read, six input fields will appear on the right side of the file browsers, they are to select the following parameters:
+Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:
 
   + Column name in the *description* file that contains the exposures
   + Column name in the *description* file that contains the families    
@@ -25,12 +25,11 @@ This is illustrated on the following figure.
 
 ![](images/analysis1_2_2.png)
   
-Once the fields are completed, please press the *Validate selections* button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads *Load selected data to analye it* will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.
+Once the fields are completed, please press the *Validate selections* button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads *Load selected data to analyze it* will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.
 
 If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting "Random imputation" on the imputation method in order to imputate with random values instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the `!` symbol at the top bar of the application.
 
 ![](images/analysis1_3.png)
-
 
 ### Missing imputation
 
@@ -47,6 +46,30 @@ To impute the missing values select "Impute missing values using mice". After th
 ![](images/analysis2_3.png)
 The new imputed exposures set can be downloaded as a `*.csv` file, please note that the downloaded file just assigns numbers to the `idnum` column, if the data you are using has different `idnum` format it's needed to format it properly so that it matches the `idnum` on the phenotypes input file when inputting it to the Shiny. 
 
+### Exposures description 
+
+There's the option of visualizing the main descriptive stats of the exposures dataset at all times of the study. The descriptive stats (per exposure) included on the table are:
+
++ Number of values
++ Number of NULLs
++ Number of NAs
++ Minimum
++ Maximum
++ Range of values
++ Sum of values
++ Median
++ Mean 
++ Standard Error of mean
++ 0.95 confidence interval of the mean
++ Variance
++ Standard deviation
++ Variance coefficient
+
+
+This table will have the descriptive stats of the loaded dataset, this means that if the user has imputed the missings (remember that after imputing the missings, the imputed dataset becomes active) it will be reflected on the table as it will show 0 NAs.
+
+![](images/analysis2_4.png)
+
 ### Normality correction
 
 <center>
@@ -57,7 +80,11 @@ Once the dataset is loaded into the Shiny, look at the "Check Normality" tab to 
 
 ![](images/analysis3_2.png)
 
-By clicking the "Show false" button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the "Normalization method" column) by double clicking on the desired row. There are three possible methods to use, "log" (default), "^1/3" and "sqrt". If no method is desired to be applied to an exposure input "none".
+There is also the option of visualizing the histogram for the implemented transformations along the normality test p-value for said transformations. 
+
+![](images/analysis3_2_2.png)
+
+By clicking the "Show false" button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the "Normalization method" column) by double clicking on the desired row. There are three possible methods to use, "log" (default, natural logarithm), "^1/3" and "sqrt". If no method is desired to be applied to an exposure (keep the original variable) input "none".
 
 ![](images/analysis3_3.png)
 
@@ -79,7 +106,7 @@ To see all the insights of the exposures dataset loaded into the Shiny, once loa
 ![](images/analysis5_1.png)
 </center>
 
-To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it's important noting (as it's already stated on the Shiny) that the grouping parameter only works when the set is selected to "samples".
+To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it's important noting (as it's already stated on the Shiny) that the grouping parameter only works when the set is selected to "samples". There are also selectors to choose which principal component to visualize on each axis, 10 principal components are computed.
 
 ![](images/analysis5_2.png)
 
@@ -87,7 +114,15 @@ If the association of the PCA analysis with the exposures is desired to visualiz
 
 ![](images/analysis5_3.png)
 
+By clicking on "Visualize as table", the table corresponding to the selected association will be prompted on a pop-up window, this table can be downloaded as a csv.
+
+![](images/analysis5_3_2.png)
+
 ### Clusterization and correlation of exposures
+
+Displaying the correlation of the exposures can help to visualize intra and inter family relations between the exposures, for that reason there are two different visualization options, the circos and the matrix.
+
+The clusterization of exposures uses a hierarchical clustering algorithm to classify the individuals profiles of exposures in k groups, where k can be selected by the user. The plot shows the profile for each group of individuals.
 
 <center>
 ![](images/analysis6_1.png)
@@ -98,6 +133,8 @@ To see the results of the exposure correlation and clustering, select the corres
 ![](images/analysis6_2.png)
 
 ![](images/analysis6_3.png)
+
+![](images/analysis6_4.png)
 
 ### ExWAS
 
@@ -133,6 +170,8 @@ To do the query of the chemicals to de CTD database click on "Query on the CTD g
 ![](images/analysis7_6.png)
 
 ### Multivariate ExWAS
+
+Multivariate analysis using Elastic Net. Multivariate ExWAS applies elastic net to the exposures given a health outcome of interest. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (`Min`) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (`1SE`).
 
 <center>
 ![](images/analysis8_1.png)
