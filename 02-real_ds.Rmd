@@ -59,7 +59,7 @@ sub05 control  22.0477  boy  5    ...
 ...   ...      ...      ...  ...
 ```
 
-## Omics dataset
+## Omics dataset {#omicsds}
 
 The omics data inputed to the Shiny must be provided as an `*.RData`. This file has to contain an ExpressionSet, which is an S4 object. This object is a data container of the Bioconductor toolset.
 

@@ -26,3 +26,4 @@ ctd-querier
 general-application-functionalities
 exposure-descriprive
 exposures-description-1
+omicsds
