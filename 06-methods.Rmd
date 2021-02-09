@@ -1,0 +1,68 @@
+# Methods
+
+## Missing data imputation
+
+LOD missings are discovered through a encoding provided by the user, there is no method implemented to separate missing values between missing at random at LOD, meaning that all NA values are considered missing at random.
+
+### Limit of detection (LOD) missing
+
+LOD missings can be imputed using two methodologies:
+
+-   LOD value / sqrt(2) : Use a LOD value provided by the user (one value per exposures) divided by the square root of two. @Richardson2003
+-   Truncated log-normal distribution generated random value. To do so the function *rtrunc* from the *truncdist* is used.
+
+### Missing at random
+
+Multiple imputation chained equations (MICE) is used to impute missing at random data. The *mice* package is used to do so. A brief explanation on the algorithm:
+
+1.  Imputation of the variable (exposure) xn with the mean of all it's values.
+2.  Perform 1 for all the variables.
+3.  Set the mean imputed values from one variable back to missing.
+4.  Perform a regression model and fill those missings.
+5.  Repeat 3 and 4 for all the variables.
+6.  Repeat 3, 4 and 5 until the imputed values obtained are stabilized.
+
+## Normality
+
+### Normality testing
+
+To test the normality of a variable, a Shapiro-Wilks test is used. The Shapiro-Wilks test, tests the null hypothesis of a sample (variable of the dataset) is normally distributed, to perform the test it calculates the W statistic.
+
+$W = \frac{\left( \Sigma^{n}_{i=1} a_i x_{(i)} \right)^2}{\Sigma^{n}_{i=1} (x_i - \overline{x})^2}$
+
+To perform this test exposome uses the *shapiro.test* function from the *base* package of R.
+
+### Normalization
+
+A user selected function can be applied to exposures (selected by the user) to normalize them. The available functions are: *log*, *sqrt* and *^1/3*.
+
+## Principal component analysis (PCA)
+
+Rexposome contains two PCA methodologies
+
++ Regular PCA @Jolliffe2016 (only numerical exposures)
++ FAMD @chavent2014multivariate (numerical and categorical)
+
+exposomeShiny uses regular PCA from the *FactoMineR* package. A toggle to select between the two may be added in future releases.
+
+## Exposures correlation
+
+The correlation method takes into account the nature of each pair of exposures: continuous vs. continuous uses cor function from R *base*, categorical vs. categorical uses cramerV function from *lsr* R package and categorical vs. continuous exposures correlation is calculated as the square root of the adjusted r-square obtained from fitting a lineal model with the categorical exposures as dependent variable and the continuous exposure as independent variable.
+
+## Exposures clustering
+
+Clustering analysis on samples can be performed to cluster individuals having similar exposure profiles. This is done using hierarchical clustering using the function *hclust* from the *stats* R package. The results this analysis yields are the exposure profiles of a selected number of groups.
+
+## Exposome Association Analysis
+
+### Single Association Analysis
+
+Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Association Study (GWAS) in genomics or to Epigenetic-Wide Association Study (EWAS) in epigenomics. The ExWAS was first described by Patel et al. @patel2010environment . ExWAS are based on generalized linear models using any formula describing the model that should be adjusted for (following standard formula options in R). That is, continuous or factor variables can be incorporated in the design, as well as interaction or splines using standard R functions and formulas. Multiple comparisons in the ExWAS analysis is addressed by computing the number of effective (Neff) tests as described by Li and Ju @li2005adjusting . The method estimates Neff by using the exposure correlation matrix that is corrected when it is not positive definite by using *nearPD* R function. The significant threshold is computed as 1-(1-0.05)Meff. This threshold is added to the Manhattan plots. When using imputed data, analysis is done for each imputed set and P-Values are pooled to obtain a global association score.
+
+### Multivariate Association Analysis
+
+There are some authors that proposed to perform association analysis in a multivariate fashion, just to take into account the correlation across exposures @agier2016systematic . A Lasso regression is implemented using Elastic-Net regularized generalized linear models implemented in *glmnet* R package.
+
+## Exposome-Omic Association Analysis
+
+Perform association analyses between exposures and omic data bt fitting linear models as described in the *limma* R package @ritchie2015limma . The pipeline implemented in association allows performing surrogate variable analysis in order to correct for unwanted variability. This adjustment is provided by *SVA* R package.

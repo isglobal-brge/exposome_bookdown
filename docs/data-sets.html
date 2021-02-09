@@ -177,7 +177,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="general-application-functionalities.html"><a href="general-application-functionalities.html"><i class="fa fa-check"></i><b>6</b> General application functionalities</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="methods.html"><a href="methods.html#missing-data-imputation"><i class="fa fa-check"></i><b>7.1</b> Missing data imputation</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="methods.html"><a href="methods.html#limit-of-detection-lod-missing"><i class="fa fa-check"></i><b>7.1.1</b> Limit of detection (LOD) missing</a></li>
+<li class="chapter" data-level="7.1.2" data-path="methods.html"><a href="methods.html#missing-at-random"><i class="fa fa-check"></i><b>7.1.2</b> Missing at random</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="methods.html"><a href="methods.html#normality"><i class="fa fa-check"></i><b>7.2</b> Normality</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="methods.html"><a href="methods.html#normality-testing"><i class="fa fa-check"></i><b>7.2.1</b> Normality testing</a></li>
+<li class="chapter" data-level="7.2.2" data-path="methods.html"><a href="methods.html#normalization"><i class="fa fa-check"></i><b>7.2.2</b> Normalization</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="methods.html"><a href="methods.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>7.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="7.4" data-path="methods.html"><a href="methods.html#exposures-correlation"><i class="fa fa-check"></i><b>7.4</b> Exposures correlation</a></li>
+<li class="chapter" data-level="7.5" data-path="methods.html"><a href="methods.html#exposures-clustering"><i class="fa fa-check"></i><b>7.5</b> Exposures clustering</a></li>
+<li class="chapter" data-level="7.6" data-path="methods.html"><a href="methods.html#exposome-association-analysis"><i class="fa fa-check"></i><b>7.6</b> Exposome Association Analysis</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="methods.html"><a href="methods.html#single-association-analysis"><i class="fa fa-check"></i><b>7.6.1</b> Single Association Analysis</a></li>
+<li class="chapter" data-level="7.6.2" data-path="methods.html"><a href="methods.html#multivariate-association-analysis"><i class="fa fa-check"></i><b>7.6.2</b> Multivariate Association Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="methods.html"><a href="methods.html#exposome-omic-association-analysis"><i class="fa fa-check"></i><b>7.7</b> Exposome-Omic Association Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -314,6 +336,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

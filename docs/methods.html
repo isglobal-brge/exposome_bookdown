@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Methods | exposomeShiny User’s Guide</title>
+  <meta name="description" content="7 Methods | exposomeShiny User’s Guide" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Methods | exposomeShiny User’s Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Methods | exposomeShiny User’s Guide" />
+  
+  
+  
+
+<meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
+
+
+<meta name="date" content="2021-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="general-application-functionalities.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/isglobal-brge/exposomeShiny" target="blank">exposomeShiny User Guide</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-rstudio-and-packages-versions"><i class="fa fa-check"></i><b>2.1</b> R, RStudio and Packages Versions</a></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#downloading-the-source-files-installing-the-libraries-and-running-the-application"><i class="fa fa-check"></i><b>2.2</b> Downloading the source files, installing the libraries and running the application</a></li>
+<li class="chapter" data-level="2.3" data-path="setup.html"><a href="setup.html#pulling-the-official-docker-image-from-dockerhub"><i class="fa fa-check"></i><b>2.3</b> Pulling the official Docker image from DockerHub</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-sets.html"><a href="data-sets.html#exposome-dataset"><i class="fa fa-check"></i><b>3.1</b> Exposome dataset</a></li>
+<li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#plain-datasets"><i class="fa fa-check"></i><b>3.2</b> Plain datasets</a></li>
+<li class="chapter" data-level="3.3" data-path="data-sets.html"><a href="data-sets.html#omicsds"><i class="fa fa-check"></i><b>3.3</b> Omics dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#rexposome"><i class="fa fa-check"></i><b>4.1</b> rexposome</a></li>
+<li class="chapter" data-level="4.2" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#omicrexposome"><i class="fa fa-check"></i><b>4.2</b> omicRexposome</a></li>
+<li class="chapter" data-level="4.3" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#ctdquerier"><i class="fa fa-check"></i><b>4.3</b> CTDquerier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome analysis</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#data-entry"><i class="fa fa-check"></i><b>5.1.1</b> Data entry</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#lod-imputation"><i class="fa fa-check"></i><b>5.1.2</b> LOD imputation</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#missing-imputation"><i class="fa fa-check"></i><b>5.1.3</b> Missing imputation</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposures-description"><i class="fa fa-check"></i><b>5.1.4</b> Exposures description</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#normality-correction"><i class="fa fa-check"></i><b>5.1.5</b> Normality correction</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposures-description-1"><i class="fa fa-check"></i><b>5.1.6</b> Exposures description</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#pca-analysis"><i class="fa fa-check"></i><b>5.1.7</b> PCA Analysis</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#clusterization-and-correlation-of-exposures"><i class="fa fa-check"></i><b>5.1.8</b> Clusterization and correlation of exposures</a></li>
+<li class="chapter" data-level="5.1.9" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas"><i class="fa fa-check"></i><b>5.1.9</b> ExWAS</a></li>
+<li class="chapter" data-level="5.1.10" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas---ctdquerier"><i class="fa fa-check"></i><b>5.1.10</b> ExWAS - CTDquerier</a></li>
+<li class="chapter" data-level="5.1.11" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#multivariate-exwas"><i class="fa fa-check"></i><b>5.1.11</b> Multivariate ExWAS</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#association-analysis"><i class="fa fa-check"></i><b>5.2.1</b> Association analysis</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="general-application-functionalities.html"><a href="general-application-functionalities.html"><i class="fa fa-check"></i><b>6</b> General application functionalities</a></li>
+<li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="methods.html"><a href="methods.html#missing-data-imputation"><i class="fa fa-check"></i><b>7.1</b> Missing data imputation</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="methods.html"><a href="methods.html#limit-of-detection-lod-missing"><i class="fa fa-check"></i><b>7.1.1</b> Limit of detection (LOD) missing</a></li>
+<li class="chapter" data-level="7.1.2" data-path="methods.html"><a href="methods.html#missing-at-random"><i class="fa fa-check"></i><b>7.1.2</b> Missing at random</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="methods.html"><a href="methods.html#normality"><i class="fa fa-check"></i><b>7.2</b> Normality</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="methods.html"><a href="methods.html#normality-testing"><i class="fa fa-check"></i><b>7.2.1</b> Normality testing</a></li>
+<li class="chapter" data-level="7.2.2" data-path="methods.html"><a href="methods.html#normalization"><i class="fa fa-check"></i><b>7.2.2</b> Normalization</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="methods.html"><a href="methods.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>7.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="7.4" data-path="methods.html"><a href="methods.html#exposures-correlation"><i class="fa fa-check"></i><b>7.4</b> Exposures correlation</a></li>
+<li class="chapter" data-level="7.5" data-path="methods.html"><a href="methods.html#exposures-clustering"><i class="fa fa-check"></i><b>7.5</b> Exposures clustering</a></li>
+<li class="chapter" data-level="7.6" data-path="methods.html"><a href="methods.html#exposome-association-analysis"><i class="fa fa-check"></i><b>7.6</b> Exposome Association Analysis</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="methods.html"><a href="methods.html#single-association-analysis"><i class="fa fa-check"></i><b>7.6.1</b> Single Association Analysis</a></li>
+<li class="chapter" data-level="7.6.2" data-path="methods.html"><a href="methods.html#multivariate-association-analysis"><i class="fa fa-check"></i><b>7.6.2</b> Multivariate Association Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="methods.html"><a href="methods.html#exposome-omic-association-analysis"><i class="fa fa-check"></i><b>7.7</b> Exposome-Omic Association Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">exposomeShiny User’s Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="methods" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Methods</h1>
+<div id="missing-data-imputation" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Missing data imputation</h2>
+<p>LOD missings are discovered through a encoding provided by the user, there is no method implemented to separate missing values between missing at random at LOD, meaning that all NA values are considered missing at random.</p>
+<div id="limit-of-detection-lod-missing" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Limit of detection (LOD) missing</h3>
+<p>LOD missings can be imputed using two methodologies:</p>
+<ul>
+<li>LOD value / sqrt(2) : Use a LOD value provided by the user (one value per exposures) divided by the square root of two. <span class="citation"><a href="references.html#ref-Richardson2003" role="doc-biblioref">Richardson and Ciampi</a> (<a href="references.html#ref-Richardson2003" role="doc-biblioref">2003</a>)</span></li>
+<li>Truncated log-normal distribution generated random value. To do so the function <em>rtrunc</em> from the <em>truncdist</em> is used.</li>
+</ul>
+</div>
+<div id="missing-at-random" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Missing at random</h3>
+<p>Multiple imputation chained equations (MICE) is used to impute missing at random data. The <em>mice</em> package is used to do so. A brief explanation on the algorithm:</p>
+<ol style="list-style-type: decimal">
+<li>Imputation of the variable (exposure) xn with the mean of all it’s values.</li>
+<li>Perform 1 for all the variables.</li>
+<li>Set the mean imputed values from one variable back to missing.</li>
+<li>Perform a regression model and fill those missings.</li>
+<li>Repeat 3 and 4 for all the variables.</li>
+<li>Repeat 3, 4 and 5 until the imputed values obtained are stabilized.</li>
+</ol>
+</div>
+</div>
+<div id="normality" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Normality</h2>
+<div id="normality-testing" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Normality testing</h3>
+<p>To test the normality of a variable, a Shapiro-Wilks test is used. The Shapiro-Wilks test, tests the null hypothesis of a sample (variable of the dataset) is normally distributed, to perform the test it calculates the W statistic.</p>
+<p><span class="math inline">\(W = \frac{\left( \Sigma^{n}_{i=1} a_i x_{(i)} \right)^2}{\Sigma^{n}_{i=1} (x_i - \overline{x})^2}\)</span></p>
+<p>To perform this test exposome uses the <em>shapiro.test</em> function from the <em>base</em> package of R.</p>
+</div>
+<div id="normalization" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Normalization</h3>
+<p>A user selected function can be applied to exposures (selected by the user) to normalize them. The available functions are: <em>log</em>, <em>sqrt</em> and <em>^1/3</em>.</p>
+</div>
+</div>
+<div id="principal-component-analysis-pca" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Principal component analysis (PCA)</h2>
+<p>Rexposome contains two PCA methodologies</p>
+<ul>
+<li>Regular PCA <span class="citation"><a href="references.html#ref-Jolliffe2016" role="doc-biblioref">Jolliffe and Cadima</a> (<a href="references.html#ref-Jolliffe2016" role="doc-biblioref">2016</a>)</span> (only numerical exposures)</li>
+<li>FAMD <span class="citation"><a href="references.html#ref-chavent2014multivariate" role="doc-biblioref">Chavent et al.</a> (<a href="references.html#ref-chavent2014multivariate" role="doc-biblioref">2014</a>)</span> (numerical and categorical)</li>
+</ul>
+<p>exposomeShiny uses regular PCA from the <em>FactoMineR</em> package. A toggle to select between the two may be added in future releases.</p>
+</div>
+<div id="exposures-correlation" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Exposures correlation</h2>
+<p>The correlation method takes into account the nature of each pair of exposures: continuous vs. continuous uses cor function from R <em>base</em>, categorical vs. categorical uses cramerV function from <em>lsr</em> R package and categorical vs. continuous exposures correlation is calculated as the square root of the adjusted r-square obtained from fitting a lineal model with the categorical exposures as dependent variable and the continuous exposure as independent variable.</p>
+</div>
+<div id="exposures-clustering" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Exposures clustering</h2>
+<p>Clustering analysis on samples can be performed to cluster individuals having similar exposure profiles. This is done using hierarchical clustering using the function <em>hclust</em> from the <em>stats</em> R package. The results this analysis yields are the exposure profiles of a selected number of groups.</p>
+</div>
+<div id="exposome-association-analysis" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Exposome Association Analysis</h2>
+<div id="single-association-analysis" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Single Association Analysis</h3>
+<p>Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Association Study (GWAS) in genomics or to Epigenetic-Wide Association Study (EWAS) in epigenomics. The ExWAS was first described by Patel et al. <span class="citation"><a href="references.html#ref-patel2010environment" role="doc-biblioref">Patel, Bhattacharya, and Butte</a> (<a href="references.html#ref-patel2010environment" role="doc-biblioref">2010</a>)</span> . ExWAS are based on generalized linear models using any formula describing the model that should be adjusted for (following standard formula options in R). That is, continuous or factor variables can be incorporated in the design, as well as interaction or splines using standard R functions and formulas. Multiple comparisons in the ExWAS analysis is addressed by computing the number of effective (Neff) tests as described by Li and Ju <span class="citation"><a href="references.html#ref-li2005adjusting" role="doc-biblioref">Li and Ji</a> (<a href="references.html#ref-li2005adjusting" role="doc-biblioref">2005</a>)</span> . The method estimates Neff by using the exposure correlation matrix that is corrected when it is not positive definite by using <em>nearPD</em> R function. The significant threshold is computed as 1-(1-0.05)Meff. This threshold is added to the Manhattan plots. When using imputed data, analysis is done for each imputed set and P-Values are pooled to obtain a global association score.</p>
+</div>
+<div id="multivariate-association-analysis" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Multivariate Association Analysis</h3>
+<p>There are some authors that proposed to perform association analysis in a multivariate fashion, just to take into account the correlation across exposures <span class="citation"><a href="references.html#ref-agier2016systematic" role="doc-biblioref">Agier et al.</a> (<a href="references.html#ref-agier2016systematic" role="doc-biblioref">2016</a>)</span> . A Lasso regression is implemented using Elastic-Net regularized generalized linear models implemented in <em>glmnet</em> R package.</p>
+</div>
+</div>
+<div id="exposome-omic-association-analysis" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Exposome-Omic Association Analysis</h2>
+<p>Perform association analyses between exposures and omic data bt fitting linear models as described in the <em>limma</em> R package <span class="citation"><a href="references.html#ref-ritchie2015limma" role="doc-biblioref">Ritchie et al.</a> (<a href="references.html#ref-ritchie2015limma" role="doc-biblioref">2015</a>)</span> . The pipeline implemented in association allows performing surrogate variable analysis in order to correct for unwanted variability. This adjustment is provided by <em>SVA</em> R package.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="general-application-functionalities.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["exposomShiny-bookdown.pdf", "exposomShiny-bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
