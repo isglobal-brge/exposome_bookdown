@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Setup | exposomeShiny User’s Guide</title>
   <meta name="description" content="2 Setup | exposomeShiny User’s Guide" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Setup | exposomeShiny User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-10-13" />
+<meta name="date" content="2021-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data-sets.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,22 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -135,32 +136,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
-<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
-<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#downloading-the-source-files-installing-the-libraries-and-running-the-application"><i class="fa fa-check"></i><b>2.1</b> Downloading the source files, installing the libraries and running the application</a></li>
-<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#pulling-the-official-docker-image-from-dockerhub"><i class="fa fa-check"></i><b>2.2</b> Pulling the official Docker image from DockerHub</a></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-rstudio-and-packages-versions"><i class="fa fa-check"></i><b>2.1</b> R, RStudio and Packages Versions</a></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#downloading-the-source-files-installing-the-libraries-and-running-the-application"><i class="fa fa-check"></i><b>2.2</b> Downloading the source files, installing the libraries and running the application</a></li>
+<li class="chapter" data-level="2.3" data-path="setup.html"><a href="setup.html#pulling-the-official-docker-image-from-dockerhub"><i class="fa fa-check"></i><b>2.3</b> Pulling the official Docker image from DockerHub</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a><ul>
+<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data-sets.html"><a href="data-sets.html#exposome-dataset"><i class="fa fa-check"></i><b>3.1</b> Exposome dataset</a></li>
-<li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#omics-dataset"><i class="fa fa-check"></i><b>3.2</b> Omics dataset</a></li>
+<li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#plain-datasets"><i class="fa fa-check"></i><b>3.2</b> Plain datasets</a></li>
+<li class="chapter" data-level="3.3" data-path="data-sets.html"><a href="data-sets.html#omicsds"><i class="fa fa-check"></i><b>3.3</b> Omics dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a><ul>
+<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#rexposome"><i class="fa fa-check"></i><b>4.1</b> rexposome</a></li>
 <li class="chapter" data-level="4.2" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#omicrexposome"><i class="fa fa-check"></i><b>4.2</b> omicRexposome</a></li>
 <li class="chapter" data-level="4.3" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#ctdquerier"><i class="fa fa-check"></i><b>4.3</b> CTDquerier</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a><ul>
-<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome analysis</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#lod-imputation"><i class="fa fa-check"></i><b>5.1.1</b> LOD imputation</a></li>
-<li class="chapter" data-level="5.1.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#missing-imputation"><i class="fa fa-check"></i><b>5.1.2</b> Missing imputation</a></li>
-<li class="chapter" data-level="5.1.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#normality-correction"><i class="fa fa-check"></i><b>5.1.3</b> Normality correction</a></li>
+<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome analysis</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#data-entry"><i class="fa fa-check"></i><b>5.1.1</b> Data entry</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#lod-imputation"><i class="fa fa-check"></i><b>5.1.2</b> LOD imputation</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#missing-imputation"><i class="fa fa-check"></i><b>5.1.3</b> Missing imputation</a></li>
 <li class="chapter" data-level="5.1.4" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposures-description"><i class="fa fa-check"></i><b>5.1.4</b> Exposures description</a></li>
-<li class="chapter" data-level="5.1.5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#pca-analysis"><i class="fa fa-check"></i><b>5.1.5</b> PCA Analysis</a></li>
-<li class="chapter" data-level="5.1.6" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#clusterization-and-correlation-of-exposures"><i class="fa fa-check"></i><b>5.1.6</b> Clusterization and correlation of exposures</a></li>
-<li class="chapter" data-level="5.1.7" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas"><i class="fa fa-check"></i><b>5.1.7</b> ExWAS</a></li>
-<li class="chapter" data-level="5.1.8" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas---ctdquerier"><i class="fa fa-check"></i><b>5.1.8</b> ExWAS - CTDquerier</a></li>
-<li class="chapter" data-level="5.1.9" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#multivariate-exwas"><i class="fa fa-check"></i><b>5.1.9</b> Multivariate ExWAS</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#normality-correction"><i class="fa fa-check"></i><b>5.1.5</b> Normality correction</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposures-description-1"><i class="fa fa-check"></i><b>5.1.6</b> Exposures description</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#pca-analysis"><i class="fa fa-check"></i><b>5.1.7</b> PCA Analysis</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#clusterization-and-correlation-of-exposures"><i class="fa fa-check"></i><b>5.1.8</b> Clusterization and correlation of exposures</a></li>
+<li class="chapter" data-level="5.1.9" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas"><i class="fa fa-check"></i><b>5.1.9</b> ExWAS</a></li>
+<li class="chapter" data-level="5.1.10" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas---ctdquerier"><i class="fa fa-check"></i><b>5.1.10</b> ExWAS - CTDquerier</a></li>
+<li class="chapter" data-level="5.1.11" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#multivariate-exwas"><i class="fa fa-check"></i><b>5.1.11</b> Multivariate ExWAS</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a><ul>
+<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#association-analysis"><i class="fa fa-check"></i><b>5.2.1</b> Association analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
 </ul></li>
@@ -187,52 +198,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1">
+<div id="setup" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Setup</h1>
+<div id="r-rstudio-and-packages-versions" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> R, RStudio and Packages Versions</h2>
+<p>If the user chooses to install and use exposomeShiny using RStudio instead of Docker, the list of package versions used for the development of the application is provided for stability purposes. When using the Docker version of the application, all of the following is bundled on the image so the user does not have to deal with the installation of any package.</p>
+<p>Software:</p>
+<table>
+<thead>
+<tr class="header">
+<th>R software</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>4.0.2</td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>1.4.1103</td>
+</tr>
+</tbody>
+</table>
+<p>R packages:</p>
+<table>
+<thead>
+<tr class="header">
+<th>R Packages</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>shiny</td>
+<td>1.5.0</td>
+</tr>
+<tr class="even">
+<td>shinyBS</td>
+<td>0.61</td>
+</tr>
+<tr class="odd">
+<td>rexposome</td>
+<td>1.12.2</td>
+</tr>
+<tr class="even">
+<td>omicRexposome</td>
+<td>1.12.0</td>
+</tr>
+<tr class="odd">
+<td>MultiDataSet</td>
+<td>1.18.0</td>
+</tr>
+<tr class="even">
+<td>mice</td>
+<td>3.11.0</td>
+</tr>
+<tr class="odd">
+<td>DT</td>
+<td>0.16</td>
+</tr>
+<tr class="even">
+<td>ggplot2</td>
+<td>3.3.2</td>
+</tr>
+<tr class="odd">
+<td>data.table</td>
+<td>1.13.2</td>
+</tr>
+<tr class="even">
+<td>truncdist</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td>shinyalert</td>
+<td>2.0.0</td>
+</tr>
+<tr class="even">
+<td>shinydashboard</td>
+<td>0.7.1</td>
+</tr>
+<tr class="odd">
+<td>shinyjs</td>
+<td>2.0.0</td>
+</tr>
+<tr class="even">
+<td>TxDb.Hsapiens.UCSC.hg19.knownGene</td>
+<td>3.2.2</td>
+</tr>
+<tr class="odd">
+<td>org.Hs.eg.db</td>
+<td>3.12.0</td>
+</tr>
+<tr class="even">
+<td>GenomicRanges</td>
+<td>1.42.0</td>
+</tr>
+<tr class="odd">
+<td>CTDquerier</td>
+<td>1.4.3</td>
+</tr>
+<tr class="even">
+<td>shinycssloaders</td>
+<td>1.0.0</td>
+</tr>
+<tr class="odd">
+<td>pastecs</td>
+<td>1.3.21</td>
+</tr>
+<tr class="even">
+<td>shinyWidgets</td>
+<td>0.5.4</td>
+</tr>
+</tbody>
+</table>
 <p>There are two different ways of seting up and using exposomeShiny</p>
-<div id="downloading-the-source-files-installing-the-libraries-and-running-the-application" class="section level2">
-<h2><span class="header-section-number">2.1</span> Downloading the source files, installing the libraries and running the application</h2>
+</div>
+<div id="downloading-the-source-files-installing-the-libraries-and-running-the-application" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Downloading the source files, installing the libraries and running the application</h2>
 <p>The user can choose to download the source code of the shiny application and install all the required libraries on their local R installation. Make sure <a href="https://cran.r-project.org/bin/windows/Rtools/history.html">Rtools</a> is installed to use this method.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1"></a>  <span class="co"># Set working directory</span></span>
-<span id="cb1-2"><a href="setup.html#cb1-2"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</span>
-<span id="cb1-3"><a href="setup.html#cb1-3"></a>      </span>
-<span id="cb1-4"><a href="setup.html#cb1-4"></a>  <span class="co"># Download zip</span></span>
-<span id="cb1-5"><a href="setup.html#cb1-5"></a><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
-<span id="cb1-6"><a href="setup.html#cb1-6"></a></span>
-<span id="cb1-7"><a href="setup.html#cb1-7"></a>  <span class="co"># Unzip the .zip to the working directory</span></span>
-<span id="cb1-8"><a href="setup.html#cb1-8"></a><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
-<span id="cb1-9"><a href="setup.html#cb1-9"></a></span>
-<span id="cb1-10"><a href="setup.html#cb1-10"></a>  <span class="co"># Set the working directory inside the downloaded folder</span></span>
-<span id="cb1-11"><a href="setup.html#cb1-11"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set working directory</span></span>
+<span id="cb1-2"><a href="setup.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="at">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</span>
+<span id="cb1-3"><a href="setup.html#cb1-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-4"><a href="setup.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Download zip</span></span>
+<span id="cb1-5"><a href="setup.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/exposomeShiny/archive/master.zip&quot;</span>, <span class="at">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb1-6"><a href="setup.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="setup.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Unzip the .zip to the working directory</span></span>
+<span id="cb1-8"><a href="setup.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="at">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb1-9"><a href="setup.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="setup.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set the working directory inside the downloaded folder</span></span>
+<span id="cb1-11"><a href="setup.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="at">dir =</span> <span class="st">&quot;/some/path/exposomeShiny-master&quot;</span>)</span></code></pre></div>
 Now all the source files are downloaded to the location of chose and the working directory moved to the correct folder, to start the project, open the <code>Rproj</code> file by clicking it on the Files explorer of RStudio.
 <center>
 <img src="images/setup1.png" title="fig:" alt="Source files" />
 </center>
 <p>Once the project is loaded, the file found on the source folder called <code>installer.R</code> has to be sourced and run. This will install the newest versions of the packages required by Exposome Shiny on this R session. To do so, run the following code on the RStudio console.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1"></a><span class="kw">source</span>(<span class="st">&quot;installer.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;installer.R&quot;</span>)</span></code></pre></div>
 <p>This is only needed on the first run, once completed it doesn’t need to be done prior to launching the application itself any other time.</p>
 <p>Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the <code>ui.R</code> or the <code>server.R</code> files that are inside the <code>R</code> folder and press <code>Run App</code>.</p>
 <center>
 <img src="images/setup2.png" title="fig:" alt="Start Shiny application" />
 </center>
 <p>Or the other option is to input the following command on the console.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="setup.html#cb3-1"></a>shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="setup.html#cb3-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">&#39;R&#39;</span>)</span></code></pre></div>
 </div>
-<div id="pulling-the-official-docker-image-from-dockerhub" class="section level2">
-<h2><span class="header-section-number">2.2</span> Pulling the official Docker image from DockerHub</h2>
+<div id="pulling-the-official-docker-image-from-dockerhub" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Pulling the official Docker image from DockerHub</h2>
 <p>If there’s any troubble downloading the required R packages to make exposomeShiny work, there’s the option of using Docker. It has the disadvantage of being a little bit difficult to install on a Windows machine, however, it’s extremely simple on a Mac OS X / Linux environment. For the Windows users refer to the following links for instructions on how to install Docker and setup you machine to run WSL2 and launch bash commands on Windows <a href="https://docs.docker.com/docker-for-windows/install-windows-home/">1</a>, <a href="https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/">2</a>, <a href="https://docs.docker.com/docker-for-windows/wsl/">3</a>.</p>
 <p>To download and launch exposomeShiny, execute the following command on a bash terminal(make sure Docker is running, if not search for the <code>Docker Desktop</code> app and launch it).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="setup.html#cb4-1"></a><span class="ex">docker</span> run --rm -p 80:80 brgelab/exposome-shiny</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="setup.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run --rm -p 80:80 brgelab/exposome-shiny</span></code></pre></div>
 <p>This command will download the Docker image of exposomeShiny (be aware it weights ~ 3 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using exposomeShiny open your web browser and go to the site</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="setup.html#cb5-1"></a><span class="ex">localhost</span>:80</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="setup.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">localhost</span>:80</span></code></pre></div>
 <p>At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.</p>
 <p>Once the user has finished using exposomeShiny, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="setup.html#cb6-1"></a><span class="ex">docker</span> container ls</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="setup.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container ls</span></code></pre></div>
 <p>This will prompt all the running containers, find the one with the NAMES <code>brgelab/exposome-shiny</code> and copy it’s CONTAINER ID, then input the following bash command:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="setup.html#cb7-1"></a><span class="ex">docker</span> stop xxxxxxxxxxxx</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="setup.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop xxxxxxxxxxxx</span></code></pre></div>
 <p>Where xxxxxxxxxxxx is the CONTAINER ID.</p>
 <p>To run the application again, just enter the first bash command (<code>docker run --rm -p 80:80 brgelab/exposome-shiny</code>), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="setup.html#cb8-1"></a><span class="ex">docker</span> image rm brgelab/exposome-shiny</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="setup.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image rm brgelab/exposome-shiny</span></code></pre></div>
 
 </div>
 </div>

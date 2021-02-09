@@ -59,6 +59,10 @@ sub05 control  22.0477  boy  5    ...
 ...   ...      ...      ...  ...
 ```
 
+## Plain datasets
+
+If the researcher has gathered all the data on a single file which contains both phenotype and exposure data, this file can be used too. The user interface has a selector for it, more information on the [correspondent section](#plain_data).
+
 ## Omics dataset {#omicsds}
 
 The omics data inputed to the Shiny must be provided as an `*.RData`. This file has to contain an ExpressionSet, which is an S4 object. This object is a data container of the Bioconductor toolset.
