@@ -9,7 +9,7 @@ LOD missings are discovered through a encoding provided by the user, there is no
 LOD missings can be imputed using two methodologies:
 
 -   LOD value / sqrt(2) : Use a LOD value provided by the user (one value per exposures) divided by the square root of two. @Richardson2003
--   Truncated log-normal distribution generated random value. To do so the function *rtrunc* from the *truncdist* is used.
+-   QRILC: a quantile regression approach for the imputation of left-censored missing data @lod_impute. 
 
 ### Missing at random
 
