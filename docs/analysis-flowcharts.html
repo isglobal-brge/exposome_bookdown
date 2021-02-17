@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2021-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exposome-data" class="section level4" number="5.1.1.1">
 <h4><span class="header-section-number">5.1.1.1</span> Exposome data</h4>
 <p>Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as <code>csv</code> or <code>txt</code>, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.</p>
-<p><img src="images/analysis1_2.png" />
-Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:</p>
+<p><img src="images/analysis1_2.png" /> Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:</p>
 <ul>
 <li>Column name in the <em>description</em> file that contains the exposures</li>
 <li>Column name in the <em>description</em> file that contains the families<br />
@@ -249,15 +248,15 @@ Once the tables are read two new main elements will appear, 1) the option to exp
 <h4><span class="header-section-number">5.1.1.2</span> Plain data</h4>
 <p>When dealing with a single file that contains the exposures and phenotype data, press the “My data is contained in a single table” toggle. This will change the interface to only show one file selector.</p>
 <center>
-<img src="images/plain_table_1.PNG" />
+<p><img src="images/plain_table_1.PNG" /></p>
 </center>
 <p>Select a file and press “Read file information.” This will change the interface to show a multiple selector input, all the available columns will be listed, select the ones which correspond to phenotypes.</p>
 <center>
-<img src="images/plain_table_2.PNG" />
+<p><img src="images/plain_table_2.PNG" /></p>
 </center>
 <p>When all the phenotypes are selected, press “Confirm.” Now the researcher can group the exposures into families, to do so, select them on the table, input the family name on the field “Family of selected exposures” and press “Assign.” All the exposures that have empty “Family” fields will be treated as they are their own family.</p>
 <center>
-<img src="images/plain_table_3.PNG" />
+<p><img src="images/plain_table_3.PNG" /></p>
 </center>
 <p>Finally, there are two configuration fields:</p>
 <ul>
@@ -270,7 +269,7 @@ Once the tables are read two new main elements will appear, 1) the option to exp
 <div id="lod-imputation" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> LOD imputation</h3>
 <center>
-<img src="images/analysis1_1.png" />
+<p><img src="images/analysis1_1.png" /></p>
 </center>
 <p>If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values (truncated log distribution) instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the <code>!</code> symbol at the top bar of the application.</p>
 <p><img src="images/analysis1_3.png" /></p>
@@ -278,13 +277,12 @@ Once the tables are read two new main elements will appear, 1) the option to exp
 <div id="missing-imputation" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Missing imputation</h3>
 <center>
-<img src="images/analysis2_1.png" />
+<p><img src="images/analysis2_1.png" /></p>
 </center>
 <p>Once the dataset is loaded into the Shiny, look at the “Missing Data” tab to check the percentages of missing data for each exposure present.</p>
 <p><img src="images/analysis2_2.png" /></p>
 <p>To impute the missing values select “Impute missing values using mice” (Multiple Imputation by Chained Equations), no other method of imputation is available in the software at the moment. After the process finishes, the expect output should be a new missing data graph where there’s no missing of any exposure.</p>
-<p><img src="images/analysis2_3.png" />
-The new imputed exposures set can be downloaded as a <code>*.csv</code> file, please note that the downloaded file just assigns numbers to the <code>idnum</code> column, if the data you are using has different <code>idnum</code> format it’s needed to format it properly so that it matches the <code>idnum</code> on the phenotypes input file when inputting it to the Shiny.</p>
+<p><img src="images/analysis2_3.png" /> The new imputed exposures set can be downloaded as a <code>*.csv</code> file, please note that the downloaded file just assigns numbers to the <code>idnum</code> column, if the data you are using has different <code>idnum</code> format it’s needed to format it properly so that it matches the <code>idnum</code> on the phenotypes input file when inputting it to the Shiny.</p>
 </div>
 <div id="exposures-description" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Exposures description</h3>
@@ -311,7 +309,7 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <div id="normality-correction" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> Normality correction</h3>
 <center>
-<img src="images/analysis3_1.png" />
+<p><img src="images/analysis3_1.png" /></p>
 </center>
 <p>Once the dataset is loaded into the Shiny, look at the “Check Normality” tab to check which exposures are not normal (Normality = false), this are the results of Shapiro–Wilk testing. By selecting from the table the desired exposure and clicking the “Plot histogram of selected exposure,” as the label of the button implies, a histogram of the selected exposure from the table can be seen.</p>
 <p><img src="images/analysis3_2.png" /></p>
@@ -324,7 +322,7 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <div id="exposures-description-1" class="section level3" number="5.1.6">
 <h3><span class="header-section-number">5.1.6</span> Exposures description</h3>
 <center>
-<img src="images/analysis4_1.png" />
+<p><img src="images/analysis4_1.png" /></p>
 </center>
 <p>To see all the insights of the exposures dataset loaded into the Shiny, once loaded it check the exposures description tab, there are three options to dig into the dataset, the family (family of the exposure) to visualize and two grouping factors (phenotypes).</p>
 <p><img src="images/analysis4_2.png" /></p>
@@ -332,7 +330,7 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <div id="pca-analysis" class="section level3" number="5.1.7">
 <h3><span class="header-section-number">5.1.7</span> PCA Analysis</h3>
 <center>
-<img src="images/analysis5_1.png" />
+<p><img src="images/analysis5_1.png" /></p>
 </center>
 <p>To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it’s important noting (as it’s already stated on the Shiny) that the grouping parameter only works when the set is selected to “samples.” There are also selectors to choose which principal component to visualize on each axis, 10 principal components are computed.</p>
 <p><img src="images/analysis5_2.png" /></p>
@@ -346,7 +344,7 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <p>Displaying the correlation of the exposures can help to visualize intra and inter family relations between the exposures, for that reason there are two different visualization options, the circos and the matrix.</p>
 <p>The clusterization of exposures uses a hierarchical clustering algorithm to classify the individuals profiles of exposures in k groups, where k can be selected by the user. The plot shows the profile for each group of individuals.</p>
 <center>
-<img src="images/analysis6_1.png" />
+<p><img src="images/analysis6_1.png" /></p>
 </center>
 <p>To see the results of the exposure correlation and clustering, select the corresponding tab to each analysis. For the exposure correlation analysis there are two visualizations, the matrix representation and the circos. The correlation uses Pearson method for numerical-to-numerical correlation, Cramer’s V for categorical-to-categorical correlation and linear models for categorical-to-numerical.</p>
 <p><img src="images/analysis6_2.png" /></p>
@@ -356,16 +354,24 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <div id="exwas" class="section level3" number="5.1.9">
 <h3><span class="header-section-number">5.1.9</span> ExWAS</h3>
 <center>
-<img src="images/analysis7_1.png" />
+<p><img src="images/analysis7_1.png" /></p>
 </center>
+<div id="regular" class="section level4" number="5.1.9.1">
+<h4><span class="header-section-number">5.1.9.1</span> Regular</h4>
 <p>To perform an ExWAS (exposome-wide association, univariate test of the association between exposures and health outcomes using generalized linear models) study, check the ExWAS tab and select the addecuate parameters for the ExWAS plot, there are two different plot representations, the output variable to choose (phenotype), the output family and as many covariables (phenotypes) as the user wants. There are internal checks to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial.</p>
 <p><img src="images/analysis7_2.png" /></p>
+</div>
+<div id="stratified" class="section level4" number="5.1.9.2">
+<h4><span class="header-section-number">5.1.9.2</span> Stratified</h4>
+<p>There is an option to perform a stratified ExWAS, to do so, check the toggle “Stratified analysis,” this will display a new input field to select a categorical phenotype to stratify by. This analysis will yield as many ExWAS plots as levels has the category selected, when downloading the table of results for a stratified analysis, a <em>.zip</em> file will be downloaded with a table corresponding to each plot. The naming of the tables corresponds to the stratifying variable with the category name attached (<code>sex_female.csv</code> / <code>sex_male.csv</code> in the presented case).</p>
+<p><img src="images/analysis7_7.png" /></p>
+</div>
 </div>
 <div id="exwas---ctdquerier" class="section level3" number="5.1.10">
 <h3><span class="header-section-number">5.1.10</span> ExWAS - CTDquerier</h3>
 <p>The ExWAS tab also is able to perform a CTD query of the desired chemicals.</p>
 <center>
-<img src="images/analysis7_3.png" />
+<p><img src="images/analysis7_3.png" /></p>
 </center>
 <p>To perform a CTDquerier of chemicals with the results of the ExWAS, click on the desired exposure to preload it into the query, when clicked, a chemical name with it’s associated P-Value will appear on the table on the right, if that’s the desired chemical to add to the query list click “Add to querier.” In the case of adding an unwanted chemical to the query list, select it (or them) by clicking on the Querier list and click on “Remove from querier.”</p>
 <p><img src="images/analysis7_4.png" /></p>
@@ -377,22 +383,21 @@ The new imputed exposures set can be downloaded as a <code>*.csv</code> file, pl
 <h3><span class="header-section-number">5.1.11</span> Multivariate ExWAS</h3>
 <p>Multivariate analysis using Elastic Net (LASSO regression). Multivariate ExWAS applies elastic net to the exposures given a health outcome of interest. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (<code>Min</code>) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (<code>1SE</code>).</p>
 <center>
-<img src="images/analysis8_1.png" />
+<p><img src="images/analysis8_1.png" /></p>
 </center>
 <p>To perform a multivariate ExWAS study, check the Multivariate ExWAS tab and select the desired output parameter, click on run model to generate the plot. As on the ExWAS plot options there’s implemented an internal check to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial, as the diagrams states if the dataset has not been imputed the missings, it will automatically do it to perform the Multivariate ExWAS, however when closing the plot the imputed dataset will be removed from the environment, so all the other studies performed afterwards will not be altered.</p>
-<p><img src="images/analysis8_2.png" />
-<img src="images/analysis8_3.png" /></p>
+<p><img src="images/analysis8_2.png" /> <img src="images/analysis8_3.png" /></p>
 </div>
 </div>
 <div id="exposome-omic-analysis" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Exposome-Omic analysis</h2>
 <p>It’s important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the <code>server.R</code> file.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-flowcharts.html#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
-<span id="cb13-2"><a href="analysis-flowcharts.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-flowcharts.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
+<span id="cb1-2"><a href="analysis-flowcharts.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <div id="association-analysis" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Association analysis</h3>
 <center>
-<img src="images/analysis9_1.png" />
+<p><img src="images/analysis9_1.png" /></p>
 </center>
 <p>Do first the proceeding of exposome data load and corresponding treatment if desired, then proceed to load the omic dataset on the “Data Entry” subtab. The omic data should be provided as a <code>*.RData</code> file.</p>
 <p><img src="images/analysis9_2.png" /></p>
@@ -488,20 +493,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

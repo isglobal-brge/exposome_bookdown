@@ -45,3 +45,5 @@ single-association-analysis
 multivariate-association-analysis
 exposome-omic-association-analysis
 references
+regular
+stratified
