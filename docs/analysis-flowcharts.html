@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-02-17" />
+<meta name="date" content="2021-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,6 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#association-analysis"><i class="fa fa-check"></i><b>5.2.1</b> Association analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#enrichment-analysis"><i class="fa fa-check"></i><b>5.2.3</b> Enrichment analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="general-application-functionalities.html"><a href="general-application-functionalities.html"><i class="fa fa-check"></i><b>6</b> General application functionalities</a></li>
@@ -392,8 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exposome-omic-analysis" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Exposome-Omic analysis</h2>
 <p>It’s important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the <code>server.R</code> file.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-flowcharts.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
-<span id="cb1-2"><a href="analysis-flowcharts.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-flowcharts.html#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
+<span id="cb13-2"><a href="analysis-flowcharts.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <div id="association-analysis" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Association analysis</h3>
 <center>
@@ -411,17 +412,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/analysis9_6.png" /></p>
 <p>The QQ Plot shows a QQ plot (expected vs. observed -lo10(p-value)) for the selected exposure.</p>
 <p><img src="images/analysis9_7.png" /></p>
-<p>The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.</p>
+<p>The Volcan plot shows a volcano plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.</p>
 <p><img src="images/analysis9_8.png" /></p>
 </div>
 <div id="ctd-querier" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> CTD querier</h3>
 <p><img src="images/analysis10_1.png" /></p>
-<p>To perform a CTD querier study of the exposome-omic analysis, as before, load both datasets and run the desired model with them, check the Volcan plot and click on the desired point on the Volcan plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click “Add to querier.” It’s important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it’s found it will be added to the lower table corresponding to the genes to query.</p>
+<p>To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click “Add to querier.” It’s important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it’s found it will be added to the lower table corresponding to the genes to query.</p>
 <p><img src="images/analysis10_2.png" /></p>
-<p>If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click “Remove from querier.” Click on “Query selected genes on the CTD gene database” to perform the query of all the symbols of the querier list.</p>
+<p>If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click “Remove from querier.” Go to the CTDquerier tab to perform the query with the selected genes.</p>
 <p><img src="images/analysis10_3.png" /></p>
-<p>To visualize the results of the query, go to the “CTDquerier results” subtab. There are six tabs showing different results interpretations. First there’s the “Lost &amp; found” tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther’s also two lists stating the names of them.</p>
+<p>There are six tabs showing different results interpretations. First there’s the “Lost &amp; found” tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther’s also two lists stating the names of them.</p>
 <p><img src="images/analysis10_4.png" /></p>
 <p>The diseases tab shows a table of all the associated diseases found on the CTD database.</p>
 <p><img src="images/analysis10_5.png" /></p>
@@ -433,6 +434,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/analysis10_8.png" /></p>
 <p>The association matrix tab shows a matrix of genes vs. chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.</p>
 <p><img src="images/analysis10_9.png" /></p>
+</div>
+<div id="enrichment-analysis" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Enrichment analysis</h3>
+<p>To perform an enrichment analysis, the genes of interest have to ve selected as with the CTDquerier, using the volcano plot from the association analysis.</p>
+<p><img src="images/analysis10_2.png" /></p>
+<p>After selecting them, go to the “Enrichment analysis” tab, on it there is a selector to choose between GO and KEGG databases and a threshold selector for the cutoff pvalue of the enrichment analysis.</p>
+<p><img src="images/analysis11_1.png" /></p>
+<p>When the enrichment analysis is performed, there are multiple visualization tabs for the results, the first one is a table with the plain results, which can be downloaded.</p>
+<p><img src="images/analysis11_2.png" /></p>
+<p>The following four tabs correspond to different visualization options for the results. All of them can be downloaded.</p>
+<p><img src="images/analysis11_3.png" />
+<img src="images/analysis11_4.png" />
+<img src="images/analysis11_5.png" />
+<img src="images/analysis11_6.png" /></p>
 
 </div>
 </div>
@@ -493,6 +508,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

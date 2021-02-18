@@ -24,11 +24,14 @@ exposures-description-1
 pca-analysis
 clusterization-and-correlation-of-exposures
 exwas
+regular
+stratified
 exwas---ctdquerier
 multivariate-exwas
 exposome-omic-analysis
 association-analysis
 ctd-querier
+enrichment-analysis
 general-application-functionalities
 methods
 missing-data-imputation
@@ -45,5 +48,3 @@ single-association-analysis
 multivariate-association-analysis
 exposome-omic-association-analysis
 references
-regular
-stratified

@@ -138,7 +138,7 @@
 
 \title{exposomeShiny User's Guide}
 \author{Escribà Montagut, Xavier; González, Juan R.}
-\date{2021-02-16}
+\date{2021-02-18}
 
 \begin{document}
 \maketitle
@@ -454,8 +454,7 @@ As any user would need to do using the Bioconductor packages (rexposome, omicRex
 
 Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as \texttt{csv} or \texttt{txt}, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.
 
-\includegraphics{images/analysis1_2.png}
-Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:
+\includegraphics{images/analysis1_2.png} Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:
 
 \begin{itemize}
 \tightlist
@@ -526,8 +525,7 @@ Once the dataset is loaded into the Shiny, look at the ``Missing Data'' tab to c
 
 To impute the missing values select ``Impute missing values using mice'' (Multiple Imputation by Chained Equations), no other method of imputation is available in the software at the moment. After the process finishes, the expect output should be a new missing data graph where there's no missing of any exposure.
 
-\includegraphics{images/analysis2_3.png}
-The new imputed exposures set can be downloaded as a \texttt{*.csv} file, please note that the downloaded file just assigns numbers to the \texttt{idnum} column, if the data you are using has different \texttt{idnum} format it's needed to format it properly so that it matches the \texttt{idnum} on the phenotypes input file when inputting it to the Shiny.
+\includegraphics{images/analysis2_3.png} The new imputed exposures set can be downloaded as a \texttt{*.csv} file, please note that the downloaded file just assigns numbers to the \texttt{idnum} column, if the data you are using has different \texttt{idnum} format it's needed to format it properly so that it matches the \texttt{idnum} on the phenotypes input file when inputting it to the Shiny.
 
 \hypertarget{exposures-description}{%
 \subsection{Exposures description}\label{exposures-description}}
@@ -637,9 +635,19 @@ To see the results of the exposure correlation and clustering, select the corres
 
 \includegraphics{images/analysis7_1.png}
 
+\hypertarget{regular}{%
+\subsubsection{Regular}\label{regular}}
+
 To perform an ExWAS (exposome-wide association, univariate test of the association between exposures and health outcomes using generalized linear models) study, check the ExWAS tab and select the addecuate parameters for the ExWAS plot, there are two different plot representations, the output variable to choose (phenotype), the output family and as many covariables (phenotypes) as the user wants. There are internal checks to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial.
 
 \includegraphics{images/analysis7_2.png}
+
+\hypertarget{stratified}{%
+\subsubsection{Stratified}\label{stratified}}
+
+There is an option to perform a stratified ExWAS, to do so, check the toggle ``Stratified analysis'', this will display a new input field to select a categorical phenotype to stratify by. This analysis will yield as many ExWAS plots as levels has the category selected, when downloading the table of results for a stratified analysis, a \emph{.zip} file will be downloaded with a table corresponding to each plot. The naming of the tables corresponds to the stratifying variable with the category name attached (\texttt{sex\_female.csv} / \texttt{sex\_male.csv} in the presented case).
+
+\includegraphics{images/analysis7_7.png}
 
 \hypertarget{exwas---ctdquerier}{%
 \subsection{ExWAS - CTDquerier}\label{exwas---ctdquerier}}
@@ -667,8 +675,7 @@ Multivariate analysis using Elastic Net (LASSO regression). Multivariate ExWAS a
 
 To perform a multivariate ExWAS study, check the Multivariate ExWAS tab and select the desired output parameter, click on run model to generate the plot. As on the ExWAS plot options there's implemented an internal check to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial, as the diagrams states if the dataset has not been imputed the missings, it will automatically do it to perform the Multivariate ExWAS, however when closing the plot the imputed dataset will be removed from the environment, so all the other studies performed afterwards will not be altered.
 
-\includegraphics{images/analysis8_2.png}
-\includegraphics{images/analysis8_3.png}
+\includegraphics{images/analysis8_2.png} \includegraphics{images/analysis8_3.png}
 
 \hypertarget{exposome-omic-analysis}{%
 \section{Exposome-Omic analysis}\label{exposome-omic-analysis}}
@@ -711,7 +718,7 @@ The QQ Plot shows a QQ plot (expected vs.~observed -lo10(p-value)) for the selec
 
 \includegraphics{images/analysis9_7.png}
 
-The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.
+The Volcan plot shows a volcano plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.
 
 \includegraphics{images/analysis9_8.png}
 
@@ -720,15 +727,15 @@ The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For 
 
 \includegraphics{images/analysis10_1.png}
 
-To perform a CTD querier study of the exposome-omic analysis, as before, load both datasets and run the desired model with them, check the Volcan plot and click on the desired point on the Volcan plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click ``Add to querier''. It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
+To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click ``Add to querier''. It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
 
 \includegraphics{images/analysis10_2.png}
 
-If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click ``Remove from querier''. Click on ``Query selected genes on the CTD gene database'' to perform the query of all the symbols of the querier list.
+If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click ``Remove from querier''. Go to the CTDquerier tab to perform the query with the selected genes.
 
 \includegraphics{images/analysis10_3.png}
 
-To visualize the results of the query, go to the ``CTDquerier results'' subtab. There are six tabs showing different results interpretations. First there's the ``Lost \& found'' tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
+There are six tabs showing different results interpretations. First there's the ``Lost \& found'' tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
 
 \includegraphics{images/analysis10_4.png}
 
@@ -751,6 +758,28 @@ The inference score tab shows the inference score for each gene for a selected d
 The association matrix tab shows a matrix of genes vs.~chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.
 
 \includegraphics{images/analysis10_9.png}
+
+\hypertarget{enrichment-analysis}{%
+\subsection{Enrichment analysis}\label{enrichment-analysis}}
+
+To perform an enrichment analysis, the genes of interest have to ve selected as with the CTDquerier, using the volcano plot from the association analysis.
+
+\includegraphics{images/analysis10_2.png}
+
+After selecting them, go to the ``Enrichment analysis'' tab, on it there is a selector to choose between GO and KEGG databases and a threshold selector for the cutoff pvalue of the enrichment analysis.
+
+\includegraphics{images/analysis11_1.png}
+
+When the enrichment analysis is performed, there are multiple visualization tabs for the results, the first one is a table with the plain results, which can be downloaded.
+
+\includegraphics{images/analysis11_2.png}
+
+The following four tabs correspond to different visualization options for the results. All of them can be downloaded.
+
+\includegraphics{images/analysis11_3.png}
+\includegraphics{images/analysis11_4.png}
+\includegraphics{images/analysis11_5.png}
+\includegraphics{images/analysis11_6.png}
 
 \hypertarget{general-application-functionalities}{%
 \chapter{General application functionalities}\label{general-application-functionalities}}
@@ -803,7 +832,7 @@ LOD missings can be imputed using two methodologies:
 \item
   LOD value / sqrt(2) : Use a LOD value provided by the user (one value per exposures) divided by the square root of two. \citet{Richardson2003}
 \item
-  QRILC: a quantile regression approach for the imputation of left-censored missing data \citet{lod_impute} .
+  QRILC: a quantile regression approach for the imputation of left-censored missing data \citet{lod_impute}.
 \end{itemize}
 
 \hypertarget{missing-at-random}{%

@@ -278,7 +278,7 @@ The QQ Plot shows a QQ plot (expected vs. observed -lo10(p-value)) for the selec
 
 ![](images/analysis9_7.png)
 
-The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.
+The Volcan plot shows a volcano plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.
 
 ![](images/analysis9_8.png)
 
@@ -286,15 +286,15 @@ The Volcan plot shows a volcan plot (log2(fold change) vs -log10(p-value)). For 
 
 ![](images/analysis10_1.png)
 
-To perform a CTD querier study of the exposome-omic analysis, as before, load both datasets and run the desired model with them, check the Volcan plot and click on the desired point on the Volcan plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click "Add to querier". It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
+To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click "Add to querier". It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
 
 ![](images/analysis10_2.png)
 
-If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click "Remove from querier". Click on "Query selected genes on the CTD gene database" to perform the query of all the symbols of the querier list.
+If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click "Remove from querier". Go to the CTDquerier tab to perform the query with the selected genes.
 
 ![](images/analysis10_3.png)
 
-To visualize the results of the query, go to the "CTDquerier results" subtab. There are six tabs showing different results interpretations. First there's the "Lost & found" tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
+There are six tabs showing different results interpretations. First there's the "Lost & found" tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
 
 ![](images/analysis10_4.png)
 
@@ -317,3 +317,25 @@ The inference score tab shows the inference score for each gene for a selected d
 The association matrix tab shows a matrix of genes vs. chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.
 
 ![](images/analysis10_9.png)
+
+### Enrichment analysis
+
+To perform an enrichment analysis, the genes of interest have to ve selected as with the CTDquerier, using the volcano plot from the association analysis.
+
+![](images/analysis10_2.png)
+
+After selecting them, go to the "Enrichment analysis" tab, on it there is a selector to choose between GO and KEGG databases and a threshold selector for the cutoff pvalue of the enrichment analysis. 
+
+![](images/analysis11_1.png)
+
+When the enrichment analysis is performed, there are multiple visualization tabs for the results, the first one is a table with the plain results, which can be downloaded.
+
+![](images/analysis11_2.png)
+
+The following four tabs correspond to different visualization options for the results. All of them can be downloaded.
+
+![](images/analysis11_3.png)
+![](images/analysis11_4.png)
+![](images/analysis11_5.png)
+![](images/analysis11_6.png)
+
