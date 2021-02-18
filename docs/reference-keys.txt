@@ -12,7 +12,7 @@ rexposome
 omicrexposome
 ctdquerier
 analysis-flowcharts
-exposome-analysis
+exposome-health-analysis
 data-entry
 exposome-data
 plain_data
@@ -32,6 +32,7 @@ exposome-omic-analysis
 association-analysis
 ctd-querier
 enrichment-analysis
+exposome-omic-intregration-e.g.-crossomics
 general-application-functionalities
 methods
 missing-data-imputation
