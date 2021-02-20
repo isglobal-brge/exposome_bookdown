@@ -342,3 +342,11 @@ The following four tabs correspond to different visualization options for the re
 ![](images/analysis11_6.png)
 
 ## Exposome-Omic intregration (e.g. crossomics)
+
+![](images/analysis12.png)
+
+The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package PMA (CRAN) and the second in omicade4 R package (Bioconductor). 
+
+The differences between association and crossomics are that the first method test association between two complete data-sets, by removing the samples having missing values in any of the involved data-sets, and the second try to find latent relationships between two or more sets.
+
+

@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-02-18" />
+<meta name="date" content="2021-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="bioconductor-packages.html"/>
 <link rel="next" href="general-application-functionalities.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,22 +50,22 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,28 +135,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
-<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
-<ul>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
 <li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-rstudio-and-packages-versions"><i class="fa fa-check"></i><b>2.1</b> R, RStudio and Packages Versions</a></li>
 <li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#downloading-the-source-files-installing-the-libraries-and-running-the-application"><i class="fa fa-check"></i><b>2.2</b> Downloading the source files, installing the libraries and running the application</a></li>
 <li class="chapter" data-level="2.3" data-path="setup.html"><a href="setup.html#pulling-the-official-docker-image-from-dockerhub"><i class="fa fa-check"></i><b>2.3</b> Pulling the official Docker image from DockerHub</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a>
-<ul>
+<li class="chapter" data-level="3" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>3</b> Data sets</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-sets.html"><a href="data-sets.html#exposome-dataset"><i class="fa fa-check"></i><b>3.1</b> Exposome dataset</a></li>
 <li class="chapter" data-level="3.2" data-path="data-sets.html"><a href="data-sets.html#plain-datasets"><i class="fa fa-check"></i><b>3.2</b> Plain datasets</a></li>
 <li class="chapter" data-level="3.3" data-path="data-sets.html"><a href="data-sets.html#omicsds"><i class="fa fa-check"></i><b>3.3</b> Omics dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a>
-<ul>
+<li class="chapter" data-level="4" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html"><i class="fa fa-check"></i><b>4</b> Bioconductor packages</a><ul>
 <li class="chapter" data-level="4.1" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#rexposome"><i class="fa fa-check"></i><b>4.1</b> rexposome</a></li>
 <li class="chapter" data-level="4.2" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#omicrexposome"><i class="fa fa-check"></i><b>4.2</b> omicRexposome</a></li>
 <li class="chapter" data-level="4.3" data-path="bioconductor-packages.html"><a href="bioconductor-packages.html#ctdquerier"><i class="fa fa-check"></i><b>4.3</b> CTDquerier</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-health-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome health analysis</a>
-<ul>
+<li class="chapter" data-level="5" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html"><i class="fa fa-check"></i><b>5</b> Analysis flowcharts</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-health-analysis"><i class="fa fa-check"></i><b>5.1</b> Exposome health analysis</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#data-entry"><i class="fa fa-check"></i><b>5.1.1</b> Data entry</a></li>
 <li class="chapter" data-level="5.1.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#lod-imputation"><i class="fa fa-check"></i><b>5.1.2</b> LOD imputation</a></li>
 <li class="chapter" data-level="5.1.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#missing-imputation"><i class="fa fa-check"></i><b>5.1.3</b> Missing imputation</a></li>
@@ -170,8 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.10" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exwas---ctdquerier"><i class="fa fa-check"></i><b>5.1.10</b> ExWAS - CTDquerier</a></li>
 <li class="chapter" data-level="5.1.11" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#multivariate-exwas"><i class="fa fa-check"></i><b>5.1.11</b> Multivariate ExWAS</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a>
-<ul>
+<li class="chapter" data-level="5.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-analysis"><i class="fa fa-check"></i><b>5.2</b> Exposome-Omic analysis</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#association-analysis"><i class="fa fa-check"></i><b>5.2.1</b> Association analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
 <li class="chapter" data-level="5.2.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#enrichment-analysis"><i class="fa fa-check"></i><b>5.2.3</b> Enrichment analysis</a></li>
@@ -179,27 +172,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-intregration-e.g.-crossomics"><i class="fa fa-check"></i><b>5.3</b> Exposome-Omic intregration (e.g. crossomics)</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="general-application-functionalities.html"><a href="general-application-functionalities.html"><i class="fa fa-check"></i><b>6</b> General application functionalities</a></li>
-<li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="methods.html"><a href="methods.html#missing-data-imputation"><i class="fa fa-check"></i><b>7.1</b> Missing data imputation</a>
-<ul>
+<li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a><ul>
+<li class="chapter" data-level="7.1" data-path="methods.html"><a href="methods.html#missing-data-imputation"><i class="fa fa-check"></i><b>7.1</b> Missing data imputation</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="methods.html"><a href="methods.html#limit-of-detection-lod-missing"><i class="fa fa-check"></i><b>7.1.1</b> Limit of detection (LOD) missing</a></li>
 <li class="chapter" data-level="7.1.2" data-path="methods.html"><a href="methods.html#missing-at-random"><i class="fa fa-check"></i><b>7.1.2</b> Missing at random</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="methods.html"><a href="methods.html#normality"><i class="fa fa-check"></i><b>7.2</b> Normality</a>
-<ul>
+<li class="chapter" data-level="7.2" data-path="methods.html"><a href="methods.html#normality"><i class="fa fa-check"></i><b>7.2</b> Normality</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="methods.html"><a href="methods.html#normality-testing"><i class="fa fa-check"></i><b>7.2.1</b> Normality testing</a></li>
 <li class="chapter" data-level="7.2.2" data-path="methods.html"><a href="methods.html#normalization"><i class="fa fa-check"></i><b>7.2.2</b> Normalization</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="methods.html"><a href="methods.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>7.3</b> Principal component analysis (PCA)</a></li>
 <li class="chapter" data-level="7.4" data-path="methods.html"><a href="methods.html#exposures-correlation"><i class="fa fa-check"></i><b>7.4</b> Exposures correlation</a></li>
 <li class="chapter" data-level="7.5" data-path="methods.html"><a href="methods.html#exposures-clustering"><i class="fa fa-check"></i><b>7.5</b> Exposures clustering</a></li>
-<li class="chapter" data-level="7.6" data-path="methods.html"><a href="methods.html#exposome-association-analysis"><i class="fa fa-check"></i><b>7.6</b> Exposome Association Analysis</a>
-<ul>
+<li class="chapter" data-level="7.6" data-path="methods.html"><a href="methods.html#exposome-association-analysis"><i class="fa fa-check"></i><b>7.6</b> Exposome Association Analysis</a><ul>
 <li class="chapter" data-level="7.6.1" data-path="methods.html"><a href="methods.html#single-association-analysis"><i class="fa fa-check"></i><b>7.6.1</b> Single Association Analysis</a></li>
 <li class="chapter" data-level="7.6.2" data-path="methods.html"><a href="methods.html#multivariate-association-analysis"><i class="fa fa-check"></i><b>7.6.2</b> Multivariate Association Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="methods.html"><a href="methods.html#exposome-omic-association-analysis"><i class="fa fa-check"></i><b>7.7</b> Exposome-Omic Association Analysis</a></li>
+<li class="chapter" data-level="7.8" data-path="methods.html"><a href="methods.html#enrichment-analysis-1"><i class="fa fa-check"></i><b>7.8</b> Enrichment analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -222,14 +212,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analysis-flowcharts" class="section level1" number="5">
+<div id="analysis-flowcharts" class="section level1">
 <h1><span class="header-section-number">5</span> Analysis flowcharts</h1>
-<div id="exposome-health-analysis" class="section level2" number="5.1">
+<div id="exposome-health-analysis" class="section level2">
 <h2><span class="header-section-number">5.1</span> Exposome health analysis</h2>
 <p>As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an <code>R</code> script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on exposomeShiny, even though it’s a seamless and codeless integration of the packages there’s still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.</p>
-<div id="data-entry" class="section level3" number="5.1.1">
+<div id="data-entry" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Data entry</h3>
-<div id="exposome-data" class="section level4" number="5.1.1.1">
+<div id="exposome-data" class="section level4">
 <h4><span class="header-section-number">5.1.1.1</span> Exposome data</h4>
 <p>Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as <code>csv</code> or <code>txt</code>, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.</p>
 <p><img src="images/analysis1_2.png" /> Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:</p>
@@ -246,17 +236,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/analysis1_2_2.png" /></p>
 <p>Once the fields are completed, please press the <em>Validate selections</em> button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads <em>Load selected data to analyze it</em> will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.</p>
 </div>
-<div id="plain_data" class="section level4" number="5.1.1.2">
+<div id="plain_data" class="section level4">
 <h4><span class="header-section-number">5.1.1.2</span> Plain data</h4>
 <p>When dealing with a single file that contains the exposures and phenotype data, press the “My data is contained in a single table” toggle. This will change the interface to only show one file selector.</p>
 <center>
 <p><img src="images/plain_table_1.PNG" /></p>
 </center>
-<p>Select a file and press “Read file information.” This will change the interface to show a multiple selector input, all the available columns will be listed, select the ones which correspond to phenotypes.</p>
+<p>Select a file and press “Read file information”. This will change the interface to show a multiple selector input, all the available columns will be listed, select the ones which correspond to phenotypes.</p>
 <center>
 <p><img src="images/plain_table_2.PNG" /></p>
 </center>
-<p>When all the phenotypes are selected, press “Confirm.” Now the researcher can group the exposures into families, to do so, select them on the table, input the family name on the field “Family of selected exposures” and press “Assign.” All the exposures that have empty “Family” fields will be treated as they are their own family.</p>
+<p>When all the phenotypes are selected, press “Confirm”. Now the researcher can group the exposures into families, to do so, select them on the table, input the family name on the field “Family of selected exposures” and press “Assign”. All the exposures that have empty “Family” fields will be treated as they are their own family.</p>
 <center>
 <p><img src="images/plain_table_3.PNG" /></p>
 </center>
@@ -265,10 +255,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The treshold of to select between continuous or factor exposures. More than this number of unique items will be considered as ‘continuous’</li>
 <li>The encoding to search for limit of detection (LOD) missings. It can be either a number (example: <code>-1</code>) or a string (example: <code>LOD</code>).</li>
 </ul>
-<p>Be sure to revise them before pressing “Load data.”</p>
+<p>Be sure to revise them before pressing “Load data”.</p>
 </div>
 </div>
-<div id="lod-imputation" class="section level3" number="5.1.2">
+<div id="lod-imputation" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> LOD imputation</h3>
 <center>
 <p><img src="images/analysis1_1.png" /></p>
@@ -276,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There’s also the option of selecting “Random imputation” on the imputation method in order to imputate with random values (truncated log distribution) instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the <code>!</code> symbol at the top bar of the application.</p>
 <p><img src="images/analysis1_3.png" /></p>
 </div>
-<div id="missing-imputation" class="section level3" number="5.1.3">
+<div id="missing-imputation" class="section level3">
 <h3><span class="header-section-number">5.1.3</span> Missing imputation</h3>
 <center>
 <p><img src="images/analysis2_1.png" /></p>
@@ -286,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To impute the missing values select “Impute missing values using mice” (Multiple Imputation by Chained Equations), no other method of imputation is available in the software at the moment. After the process finishes, the expect output should be a new missing data graph where there’s no missing of any exposure.</p>
 <p><img src="images/analysis2_3.png" /> The new imputed exposures set can be downloaded as a <code>*.csv</code> file, please note that the downloaded file just assigns numbers to the <code>idnum</code> column, if the data you are using has different <code>idnum</code> format it’s needed to format it properly so that it matches the <code>idnum</code> on the phenotypes input file when inputting it to the Shiny.</p>
 </div>
-<div id="exposures-description" class="section level3" number="5.1.4">
+<div id="exposures-description" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Exposures description</h3>
 <p>There’s the option of visualizing the main descriptive stats of the exposures dataset, available for quantitative exposure varibables. The descriptive stats (per exposure) included on the table are:</p>
 <ul>
@@ -308,20 +298,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This table will have the descriptive stats of the loaded dataset, this means that if the user has imputed the missings (remember that after imputing the missings, the imputed dataset becomes active) it will be reflected on the table as it will show 0 NAs.</p>
 <p><img src="images/analysis2_4.png" /></p>
 </div>
-<div id="normality-correction" class="section level3" number="5.1.5">
+<div id="normality-correction" class="section level3">
 <h3><span class="header-section-number">5.1.5</span> Normality correction</h3>
 <center>
 <p><img src="images/analysis3_1.png" /></p>
 </center>
-<p>Once the dataset is loaded into the Shiny, look at the “Check Normality” tab to check which exposures are not normal (Normality = false), this are the results of Shapiro–Wilk testing. By selecting from the table the desired exposure and clicking the “Plot histogram of selected exposure,” as the label of the button implies, a histogram of the selected exposure from the table can be seen.</p>
+<p>Once the dataset is loaded into the Shiny, look at the “Check Normality” tab to check which exposures are not normal (Normality = false), this are the results of Shapiro–Wilk testing. By selecting from the table the desired exposure and clicking the “Plot histogram of selected exposure”, as the label of the button implies, a histogram of the selected exposure from the table can be seen.</p>
 <p><img src="images/analysis3_2.png" /></p>
 <p>There is also the option of visualizing the histogram for the implemented transformations along the normality test p-value for said transformations.</p>
 <p><img src="images/analysis3_2_2.png" /></p>
-<p>By clicking the “Show false” button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the “Normalization method” column) by double clicking on the desired row. There are three possible methods to use, “log” (default, natural logarithm), “^1/3” and “sqrt.” If no method is desired to be applied to an exposure (keep the original variable) input “none.” The normalization method refers to applying X function to a column of the exposures tables, to transform it.</p>
+<p>By clicking the “Show false” button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the “Normalization method” column) by double clicking on the desired row. There are three possible methods to use, “log” (default, natural logarithm), “^1/3” and “sqrt”. If no method is desired to be applied to an exposure (keep the original variable) input “none”. The normalization method refers to applying X function to a column of the exposures tables, to transform it.</p>
 <p><img src="images/analysis3_3.png" /></p>
 <p>Click “Normalize” and the normalization method selected will be applied, the table on the “Check Normality” tab will be updated with the results of the normalization.</p>
 </div>
-<div id="exposures-description-1" class="section level3" number="5.1.6">
+<div id="exposures-description-1" class="section level3">
 <h3><span class="header-section-number">5.1.6</span> Exposures description</h3>
 <center>
 <p><img src="images/analysis4_1.png" /></p>
@@ -329,19 +319,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To see all the insights of the exposures dataset loaded into the Shiny, once loaded it check the exposures description tab, there are three options to dig into the dataset, the family (family of the exposure) to visualize and two grouping factors (phenotypes).</p>
 <p><img src="images/analysis4_2.png" /></p>
 </div>
-<div id="pca-analysis" class="section level3" number="5.1.7">
+<div id="pca-analysis" class="section level3">
 <h3><span class="header-section-number">5.1.7</span> PCA Analysis</h3>
 <center>
 <p><img src="images/analysis5_1.png" /></p>
 </center>
-<p>To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it’s important noting (as it’s already stated on the Shiny) that the grouping parameter only works when the set is selected to “samples.” There are also selectors to choose which principal component to visualize on each axis, 10 principal components are computed.</p>
+<p>To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it’s important noting (as it’s already stated on the Shiny) that the grouping parameter only works when the set is selected to “samples”. There are also selectors to choose which principal component to visualize on each axis, 10 principal components are computed.</p>
 <p><img src="images/analysis5_2.png" /></p>
 <p>If the association of the PCA analysis with the exposures is desired to visualize, check the “PCA association with exposures” tab, there are two grouping methods to visualize, the phenotypes to principal components and the exposures to principal components.</p>
 <p><img src="images/analysis5_3.png" /></p>
-<p>By clicking on “Visualize as table,” the table corresponding to the selected association will be prompted on a pop-up window, this table can be downloaded as a csv.</p>
+<p>By clicking on “Visualize as table”, the table corresponding to the selected association will be prompted on a pop-up window, this table can be downloaded as a csv.</p>
 <p><img src="images/analysis5_3_2.png" /></p>
 </div>
-<div id="clusterization-and-correlation-of-exposures" class="section level3" number="5.1.8">
+<div id="clusterization-and-correlation-of-exposures" class="section level3">
 <h3><span class="header-section-number">5.1.8</span> Clusterization and correlation of exposures</h3>
 <p>Displaying the correlation of the exposures can help to visualize intra and inter family relations between the exposures, for that reason there are two different visualization options, the circos and the matrix.</p>
 <p>The clusterization of exposures uses a hierarchical clustering algorithm to classify the individuals profiles of exposures in k groups, where k can be selected by the user. The plot shows the profile for each group of individuals.</p>
@@ -353,35 +343,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/analysis6_3.png" /></p>
 <p><img src="images/analysis6_4.png" /></p>
 </div>
-<div id="exwas" class="section level3" number="5.1.9">
+<div id="exwas" class="section level3">
 <h3><span class="header-section-number">5.1.9</span> ExWAS</h3>
 <center>
 <p><img src="images/analysis7_1.png" /></p>
 </center>
-<div id="regular" class="section level4" number="5.1.9.1">
+<div id="regular" class="section level4">
 <h4><span class="header-section-number">5.1.9.1</span> Regular</h4>
 <p>To perform an ExWAS (exposome-wide association, univariate test of the association between exposures and health outcomes using generalized linear models) study, check the ExWAS tab and select the addecuate parameters for the ExWAS plot, there are two different plot representations, the output variable to choose (phenotype), the output family and as many covariables (phenotypes) as the user wants. There are internal checks to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial.</p>
 <p><img src="images/analysis7_2.png" /></p>
 </div>
-<div id="stratified" class="section level4" number="5.1.9.2">
+<div id="stratified" class="section level4">
 <h4><span class="header-section-number">5.1.9.2</span> Stratified</h4>
-<p>There is an option to perform a stratified ExWAS, to do so, check the toggle “Stratified analysis,” this will display a new input field to select a categorical phenotype to stratify by. This analysis will yield as many ExWAS plots as levels has the category selected, when downloading the table of results for a stratified analysis, a <em>.zip</em> file will be downloaded with a table corresponding to each plot. The naming of the tables corresponds to the stratifying variable with the category name attached (<code>sex_female.csv</code> / <code>sex_male.csv</code> in the presented case).</p>
+<p>There is an option to perform a stratified ExWAS, to do so, check the toggle “Stratified analysis”, this will display a new input field to select a categorical phenotype to stratify by. This analysis will yield as many ExWAS plots as levels has the category selected, when downloading the table of results for a stratified analysis, a <em>.zip</em> file will be downloaded with a table corresponding to each plot. The naming of the tables corresponds to the stratifying variable with the category name attached (<code>sex_female.csv</code> / <code>sex_male.csv</code> in the presented case).</p>
 <p><img src="images/analysis7_7.png" /></p>
 </div>
 </div>
-<div id="exwas---ctdquerier" class="section level3" number="5.1.10">
+<div id="exwas---ctdquerier" class="section level3">
 <h3><span class="header-section-number">5.1.10</span> ExWAS - CTDquerier</h3>
 <p>The ExWAS tab also is able to perform a CTD query of the desired chemicals.</p>
 <center>
 <p><img src="images/analysis7_3.png" /></p>
 </center>
-<p>To perform a CTDquerier of chemicals with the results of the ExWAS, click on the desired exposure to preload it into the query, when clicked, a chemical name with it’s associated P-Value will appear on the table on the right, if that’s the desired chemical to add to the query list click “Add to querier.” In the case of adding an unwanted chemical to the query list, select it (or them) by clicking on the Querier list and click on “Remove from querier.”</p>
+<p>To perform a CTDquerier of chemicals with the results of the ExWAS, click on the desired exposure to preload it into the query, when clicked, a chemical name with it’s associated P-Value will appear on the table on the right, if that’s the desired chemical to add to the query list click “Add to querier”. In the case of adding an unwanted chemical to the query list, select it (or them) by clicking on the Querier list and click on “Remove from querier”.</p>
 <p><img src="images/analysis7_4.png" /></p>
 <p><img src="images/analysis7_5.png" /></p>
 <p>To do the query of the chemicals to de CTD database click on “Query on the CTD gene database” and see the results on the “Chemical CTDquerier Results” subtab. It’s important noting that on the “Kegg pathways” and “Go terms” the input field corresponds to the negative exponent of the filter.</p>
 <p><img src="images/analysis7_6.png" /></p>
 </div>
-<div id="multivariate-exwas" class="section level3" number="5.1.11">
+<div id="multivariate-exwas" class="section level3">
 <h3><span class="header-section-number">5.1.11</span> Multivariate ExWAS</h3>
 <p>Multivariate analysis using Elastic Net (LASSO regression). Multivariate ExWAS applies elastic net to the exposures given a health outcome of interest. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (<code>Min</code>) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (<code>1SE</code>).</p>
 <center>
@@ -391,19 +381,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/analysis8_2.png" /> <img src="images/analysis8_3.png" /></p>
 </div>
 </div>
-<div id="exposome-omic-analysis" class="section level2" number="5.2">
+<div id="exposome-omic-analysis" class="section level2">
 <h2><span class="header-section-number">5.2</span> Exposome-Omic analysis</h2>
 <p>It’s important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the <code>server.R</code> file.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-flowcharts.html#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
-<span id="cb13-2"><a href="analysis-flowcharts.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<div id="association-analysis" class="section level3" number="5.2.1">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-flowcharts.html#cb13-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
+<span id="cb13-2"><a href="analysis-flowcharts.html#cb13-2"></a><span class="kw">options</span>(<span class="dt">shiny.maxRequestSize=</span><span class="dv">30</span><span class="op">*</span><span class="dv">1024</span><span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div id="association-analysis" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Association analysis</h3>
 <center>
 <p><img src="images/analysis9_1.png" /></p>
 </center>
 <p>Do first the proceeding of exposome data load and corresponding treatment if desired, then proceed to load the omic dataset on the “Data Entry” subtab. The omic data should be provided as a <code>*.RData</code> file.</p>
 <p><img src="images/analysis9_2.png" /></p>
-<p>The exposome dataset can be subseted by families for this analysis, on the “Exposome subsetting” subtab select the families that are desired to be included in this new set to study, if all the families are desired just don’t input any and proceed to click the “Subset and add,” which will trigger the action to combine the subsetted (or not) exposome dataset with the provided omic dataset.</p>
+<p>The exposome dataset can be subseted by families for this analysis, on the “Exposome subsetting” subtab select the families that are desired to be included in this new set to study, if all the families are desired just don’t input any and proceed to click the “Subset and add”, which will trigger the action to combine the subsetted (or not) exposome dataset with the provided omic dataset.</p>
 <p><img src="images/analysis9_3.png" /></p>
 <p>Select the variables for the association analysis (linear models) and if SVA (surrogate variable analysis) is wanted on the “Association model” subtab.</p>
 <p><img src="images/analysis9_4.png" /></p>
@@ -416,12 +406,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Volcan plot shows a volcano plot (log2(fold change) vs -log10(p-value)). For this plot there are two input cells to adjust the horizontal and verital limit lines to filter out the results.</p>
 <p><img src="images/analysis9_8.png" /></p>
 </div>
-<div id="ctd-querier" class="section level3" number="5.2.2">
+<div id="ctd-querier" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> CTD querier</h3>
 <p><img src="images/analysis10_1.png" /></p>
-<p>To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click “Add to querier.” It’s important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it’s found it will be added to the lower table corresponding to the genes to query.</p>
+<p>To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click “Add to querier”. It’s important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it’s found it will be added to the lower table corresponding to the genes to query.</p>
 <p><img src="images/analysis10_2.png" /></p>
-<p>If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click “Remove from querier.” Go to the CTDquerier tab to perform the query with the selected genes.</p>
+<p>If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click “Remove from querier”. Go to the CTDquerier tab to perform the query with the selected genes.</p>
 <p><img src="images/analysis10_3.png" /></p>
 <p>There are six tabs showing different results interpretations. First there’s the “Lost &amp; found” tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther’s also two lists stating the names of them.</p>
 <p><img src="images/analysis10_4.png" /></p>
@@ -436,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The association matrix tab shows a matrix of genes vs. chemicals with a heatmap representing the existing papers (references) providing evidence about the association between chemicals and genes.</p>
 <p><img src="images/analysis10_9.png" /></p>
 </div>
-<div id="enrichment-analysis" class="section level3" number="5.2.3">
+<div id="enrichment-analysis" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Enrichment analysis</h3>
 <p><img src="images/analysis11.png" /></p>
 <p>To perform an enrichment analysis, the genes of interest have to ve selected as with the CTDquerier, using the volcano plot from the association analysis.</p>
@@ -452,8 +442,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="images/analysis11_6.png" /></p>
 </div>
 </div>
-<div id="exposome-omic-intregration-e.g.-crossomics" class="section level2" number="5.3">
+<div id="exposome-omic-intregration-e.g.-crossomics" class="section level2">
 <h2><span class="header-section-number">5.3</span> Exposome-Omic intregration (e.g. crossomics)</h2>
+<p><img src="images/analysis12.png" /></p>
+<p>The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package PMA (CRAN) and the second in omicade4 R package (Bioconductor).</p>
+<p>The differences between association and crossomics are that the first method test association between two complete data-sets, by removing the samples having missing values in any of the involved data-sets, and the second try to find latent relationships between two or more sets.</p>
 
 </div>
 </div>

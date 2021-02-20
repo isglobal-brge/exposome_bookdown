@@ -66,3 +66,7 @@ There are some authors that proposed to perform association analysis in a multiv
 ## Exposome-Omic Association Analysis
 
 Perform association analyses between exposures and omic data bt fitting linear models as described in the *limma* R package @ritchie2015limma . The pipeline implemented in association allows performing surrogate variable analysis in order to correct for unwanted variability. This adjustment is provided by *SVA* R package.
+
+## Enrichment analysis
+
+Functional profiles of selected genes are obtained using the Bioconductor package `clusterProfiler` @clusterprofiler . The available enrichment databases are GO and KEGG.
