@@ -46,7 +46,9 @@ exposures-correlation
 exposures-clustering
 exposome-association-analysis
 single-association-analysis
+stratified-single-association-analysis
 multivariate-association-analysis
 exposome-omic-association-analysis
+integration-analysis
 enrichment-analysis-1
 references

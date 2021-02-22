@@ -345,8 +345,16 @@ The following four tabs correspond to different visualization options for the re
 
 ![](images/analysis12.png)
 
-The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package PMA (CRAN) and the second in omicade4 R package (Bioconductor). 
+The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package `PMA` (CRAN) and the second in `omicade4` R package (Bioconductor). The PLS uses the `pls` R package (CRAN).
+
+For the MCIA and MCCA options, the exposome dataset can't contain missings, so it needs to be imputed beforehand. For the PLS there can be missings, however the integration analysis is done with complete cases only. Also different visualizations are provided for each method, as the used R packages provide different visualization tools, all three methods generate different type of R objects, which can be downloaded to be explorated by the user on a separate R session.
 
 The differences between association and crossomics are that the first method test association between two complete data-sets, by removing the samples having missing values in any of the involved data-sets, and the second try to find latent relationships between two or more sets.
 
+The following screenshots correspond to integration analysis using the exposome dataset `data/*_2` and the proteome omics dataset `data/brge_prot.rda`. (Exposome imputed inside exposomeShiny using MICE)
 
+![](images/analysis12_1.png)
+
+![](images/analysis12_2.png)
+
+![](images/analysis12_3.png)

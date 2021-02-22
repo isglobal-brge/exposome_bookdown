@@ -5,12 +5,13 @@
 \documentclass[
 ]{book}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -82,6 +83,7 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -90,7 +92,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -108,12 +110,35 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{exposomeShiny User's Guide}
 \author{Escribà Montagut, Xavier; González, Juan R.}
-\date{2021-02-19}
+\date{2021-02-22}
 
 \begin{document}
 \maketitle
@@ -200,6 +225,7 @@ clusterProfiler & 3.18.1\tabularnewline
 enrichplot & 1.10.2\tabularnewline
 ggupset & 0.3.0\tabularnewline
 imputeLCMD & 2.0\tabularnewline
+pls & 2.7-3\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -212,17 +238,17 @@ The user can choose to download the source code of the shiny application and ins
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \CommentTok{# Set working directory}
-\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/"}\NormalTok{)}
+  \CommentTok{\# Set working directory}
+\FunctionTok{setwd}\NormalTok{(}\AttributeTok{dir =} \StringTok{"/some/path/"}\NormalTok{)}
       
-  \CommentTok{# Download zip}
-\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url =} \StringTok{"https://github.com/isglobal-brge/exposomeShiny/archive/master.zip"}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{"master.zip"}\NormalTok{)}
+  \CommentTok{\# Download zip}
+\FunctionTok{download.file}\NormalTok{(}\AttributeTok{url =} \StringTok{"https://github.com/isglobal{-}brge/exposomeShiny/archive/master.zip"}\NormalTok{, }\AttributeTok{destfile =} \StringTok{"master.zip"}\NormalTok{)}
 
-  \CommentTok{# Unzip the .zip to the working directory}
-\KeywordTok{unzip}\NormalTok{(}\DataTypeTok{zipfile =} \StringTok{"master.zip"}\NormalTok{)}
+  \CommentTok{\# Unzip the .zip to the working directory}
+\FunctionTok{unzip}\NormalTok{(}\AttributeTok{zipfile =} \StringTok{"master.zip"}\NormalTok{)}
 
-  \CommentTok{# Set the working directory inside the downloaded folder}
-\KeywordTok{setwd}\NormalTok{(}\DataTypeTok{dir =} \StringTok{"/some/path/exposomeShiny-master"}\NormalTok{)}
+  \CommentTok{\# Set the working directory inside the downloaded folder}
+\FunctionTok{setwd}\NormalTok{(}\AttributeTok{dir =} \StringTok{"/some/path/exposomeShiny{-}master"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -234,7 +260,7 @@ Once the project is loaded, the file found on the source folder called \texttt{i
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{source}\NormalTok{(}\StringTok{"installer.R"}\NormalTok{)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"installer.R"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -248,7 +274,7 @@ Or the other option is to input the following command on the console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{shiny}\OperatorTok{::}\KeywordTok{runApp}\NormalTok{(}\StringTok{'R'}\NormalTok{)}
+\NormalTok{shiny}\SpecialCharTok{::}\FunctionTok{runApp}\NormalTok{(}\StringTok{\textquotesingle{}R\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -261,7 +287,7 @@ To download and launch exposomeShiny, execute the following command on a bash te
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{docker}\NormalTok{ run --rm -p 80:80 brgelab/exposome-shiny}
+\ExtensionTok{docker}\NormalTok{ run {-}{-}rm {-}p 80:80 brgelab/exposome{-}shiny}
 \end{Highlighting}
 \end{Shaded}
 
@@ -297,7 +323,7 @@ To run the application again, just enter the first bash command (\texttt{docker\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{docker}\NormalTok{ image rm brgelab/exposome-shiny}
+\ExtensionTok{docker}\NormalTok{ image rm brgelab/exposome{-}shiny}
 \end{Highlighting}
 \end{Shaded}
 
@@ -663,8 +689,8 @@ It's important noting that the maximum size of the omics data is 30 MB, if the o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \CommentTok{# the "30" refers to 30MB, change as needed}
-\KeywordTok{options}\NormalTok{(}\DataTypeTok{shiny.maxRequestSize=}\DecValTok{30}\OperatorTok{*}\DecValTok{1024}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+  \CommentTok{\# the "30" refers to 30MB, change as needed}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{shiny.maxRequestSize=}\DecValTok{30}\SpecialCharTok{*}\DecValTok{1024}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -767,9 +793,19 @@ The following four tabs correspond to different visualization options for the re
 
 \includegraphics{images/analysis12.png}
 
-The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package PMA (CRAN) and the second in omicade4 R package (Bioconductor).
+The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package \texttt{PMA} (CRAN) and the second in \texttt{omicade4} R package (Bioconductor). The PLS uses the \texttt{pls} R package (CRAN).
+
+For the MCIA and MCCA options, the exposome dataset can't contain missings, so it needs to be imputed beforehand. For the PLS there can be missings, however the integration analysis is done with complete cases only. Also different visualizations are provided for each method, as the used R packages provide different visualization tools, all three methods generate different type of R objects, which can be downloaded to be explorated by the user on a separate R session.
 
 The differences between association and crossomics are that the first method test association between two complete data-sets, by removing the samples having missing values in any of the involved data-sets, and the second try to find latent relationships between two or more sets.
+
+The following screenshots correspond to integration analysis using the exposome dataset \texttt{data/*\_2} and the proteome omics dataset \texttt{data/brge\_prot.rda}. (Exposome imputed inside exposomeShiny using MICE)
+
+\includegraphics{images/analysis12_1.png}
+
+\includegraphics{images/analysis12_2.png}
+
+\includegraphics{images/analysis12_3.png}
 
 \hypertarget{general-application-functionalities}{%
 \chapter{General application functionalities}\label{general-application-functionalities}}
@@ -895,7 +931,12 @@ Clustering analysis on samples can be performed to cluster individuals having si
 \hypertarget{single-association-analysis}{%
 \subsection{Single Association Analysis}\label{single-association-analysis}}
 
-Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Association Study (GWAS) in genomics or to Epigenetic-Wide Association Study (EWAS) in epigenomics. The ExWAS was first described by Patel et al.~\citet{patel2010environment} . ExWAS are based on generalized linear models using any formula describing the model that should be adjusted for (following standard formula options in R). That is, continuous or factor variables can be incorporated in the design, as well as interaction or splines using standard R functions and formulas. Multiple comparisons in the ExWAS analysis is addressed by computing the number of effective (Neff) tests as described by Li and Ju \citet{li2005adjusting} . The method estimates Neff by using the exposure correlation matrix that is corrected when it is not positive definite by using \emph{nearPD} R function. The significant threshold is computed as 1-(1-0.05)Meff. This threshold is added to the Manhattan plots. When using imputed data, analysis is done for each imputed set and P-Values are pooled to obtain a global association score.
+Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Association Study (GWAS) in genomics or to Epigenetic-Wide Association Study (EWAS) in epigenomics. The ExWAS was first described by Patel et al. \citet{patel2010environment} . ExWAS are based on generalized linear models using any formula describing the model that should be adjusted for (following standard formula options in R). That is, continuous or factor variables can be incorporated in the design, as well as interaction or splines using standard R functions and formulas. Multiple comparisons in the ExWAS analysis is addressed by computing the number of effective (Neff) tests as described by Li and Ju \citet{li2005adjusting} . The method estimates Neff by using the exposure correlation matrix that is corrected when it is not positive definite by using \emph{nearPD} R function. The significant threshold is computed as 1-(1-0.05)Meff. This threshold is added to the Manhattan plots. When using imputed data, analysis is done for each imputed set and P-Values are pooled to obtain a global association score.
+
+\hypertarget{stratified-single-association-analysis}{%
+\subsection{Stratified Single Association Analysis}\label{stratified-single-association-analysis}}
+
+The stratified analysis option for the ExWAS corresponds to applying the same method as regular ExWAS to subsetted datasets. As example, a stratified analysis with the \texttt{sex} variable stratified corresponds to performing two ExWAS, one to the \texttt{male} and one for the \texttt{female} group.
 
 \hypertarget{multivariate-association-analysis}{%
 \subsection{Multivariate Association Analysis}\label{multivariate-association-analysis}}
@@ -905,7 +946,22 @@ There are some authors that proposed to perform association analysis in a multiv
 \hypertarget{exposome-omic-association-analysis}{%
 \section{Exposome-Omic Association Analysis}\label{exposome-omic-association-analysis}}
 
-Perform association analyses between exposures and omic data bt fitting linear models as described in the \emph{limma} R package \citet{ritchie2015limma} . The pipeline implemented in association allows performing surrogate variable analysis in order to correct for unwanted variability. This adjustment is provided by \emph{SVA} R package.
+Perform association analyses between exposures and omic data bt fitting linear models as described in the \emph{limma} R package \citet{ritchie2015limma} . The pipeline implemented in association allows performing surrogate variable analysis in order to correct for unwanted variability. This adjustment is provided by \emph{SVA} R package \citet{sva} .
+
+\hypertarget{integration-analysis}{%
+\section{Integration analysis}\label{integration-analysis}}
+
+There are three different methodologies to perform the integration analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  Multiset canonical correlation analysis (MCCA). Implemented using the \texttt{MultiCCA} function of \texttt{PMA} R package \citet{witten2020package} .
+\item
+  Multiple co-inertia analysis (MCIA). Implemented using the \texttt{mcia} function of \texttt{omicade4} R package \citet{mcia} , \citet{min2020sparse} .
+\item
+  Partial least squares (PLS)
+\end{itemize}
 
 \hypertarget{enrichment-analysis-1}{%
 \section{Enrichment analysis}\label{enrichment-analysis-1}}
@@ -916,6 +972,8 @@ Functional profiles of selected genes are obtained using the Bioconductor packag
 \chapter{References}\label{references}}
 
 \hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
 
   \bibliography{book.bib,packages.bib}
 
