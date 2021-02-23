@@ -8,7 +8,7 @@ As any user would need to do using the Bioconductor packages (rexposome, omicRex
 
 #### Exposome data
 
-Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as `csv` or `txt`, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.
+Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as `csv` or `txt`, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs. Be sure all three files share the same separator.
 
 ![](images/analysis1_2.png) Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:
 

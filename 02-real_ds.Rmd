@@ -1,11 +1,16 @@
 # Data sets
 
 ## Exposome dataset
-The exposome is composed of three different files (in `*.csv` format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
+The exposome is composed of three different files (in `*.csv`, `*.tsv` or `*.txt` format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
 
 + The `exposures` file contains the measures of each exposure for all the individuals included on the analysis. It is a matrix-like file having a row per individual and a column per exposures. It must includes a column with the subject’s identifier.
 + The `description` file contains a row for each exposure and, at last, defined the families of exposures. Usually, this file incorporates a description of the exposures, the matrix where it was obtained and the units of measurement among others.
 + The `phenotypes` file contains the covariates to be included in the analysis as well as the health outcomes of interest. It contains a row per individual included in the analysis and a column for each covariate and outcome. Moreover, it must include a column with the individual’s identifier.
+
+A couple remarks regarding this files:
+
++ All three files have to share the same separator element, for `*.csv` files is typical to use a comma (,) but it could also be a semicolon (;).
++ The exposure names have to start with a character [a-z/A-Z], trailing special characters will cause the data entry to return errors.
 
 A visual representation of the three matrices and how they correlate is the following.
 
