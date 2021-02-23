@@ -52,3 +52,4 @@ exposome-omic-association-analysis
 integration-analysis
 enrichment-analysis-1
 references
+exposome-omic-integration-e.g.-crossomics

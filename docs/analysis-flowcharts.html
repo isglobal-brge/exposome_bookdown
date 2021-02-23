@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-02-22" />
+<meta name="date" content="2021-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#ctd-querier"><i class="fa fa-check"></i><b>5.2.2</b> CTD querier</a></li>
 <li class="chapter" data-level="5.2.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#enrichment-analysis"><i class="fa fa-check"></i><b>5.2.3</b> Enrichment analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-intregration-e.g.-crossomics"><i class="fa fa-check"></i><b>5.3</b> Exposome-Omic intregration (e.g. crossomics)</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis-flowcharts.html"><a href="analysis-flowcharts.html#exposome-omic-integration-e.g.-crossomics"><i class="fa fa-check"></i><b>5.3</b> Exposome-Omic integration (e.g. crossomics)</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="general-application-functionalities.html"><a href="general-application-functionalities.html"><i class="fa fa-check"></i><b>6</b> General application functionalities</a></li>
 <li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a>
@@ -397,8 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exposome-omic-analysis" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Exposome-Omic analysis</h2>
 <p>It’s important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the <code>server.R</code> file.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-flowcharts.html#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
-<span id="cb13-2"><a href="analysis-flowcharts.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-flowcharts.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;30&quot; refers to 30MB, change as needed</span></span>
+<span id="cb1-2"><a href="analysis-flowcharts.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.maxRequestSize=</span><span class="dv">30</span><span class="sc">*</span><span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <div id="association-analysis" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Association analysis</h3>
 <center>
@@ -455,8 +455,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="images/analysis11_6.png" /></p>
 </div>
 </div>
-<div id="exposome-omic-intregration-e.g.-crossomics" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Exposome-Omic intregration (e.g. crossomics)</h2>
+<div id="exposome-omic-integration-e.g.-crossomics" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Exposome-Omic integration (e.g. crossomics)</h2>
 <p><img src="images/analysis12.png" /></p>
 <p>The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package <code>PMA</code> (CRAN) and the second in <code>omicade4</code> R package (Bioconductor). The PLS uses the <code>pls</code> R package (CRAN).</p>
 <p>For the MCIA and MCCA options, the exposome dataset can’t contain missings, so it needs to be imputed beforehand. For the PLS there can be missings, however the integration analysis is done with complete cases only. Also different visualizations are provided for each method, as the used R packages provide different visualization tools, all three methods generate different type of R objects, which can be downloaded to be explorated by the user on a separate R session.</p>
@@ -524,20 +524,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

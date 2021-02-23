@@ -341,7 +341,7 @@ The following four tabs correspond to different visualization options for the re
 ![](images/analysis11_5.png)
 ![](images/analysis11_6.png)
 
-## Exposome-Omic intregration (e.g. crossomics)
+## Exposome-Omic integration (e.g. crossomics)
 
 ![](images/analysis12.png)
 
