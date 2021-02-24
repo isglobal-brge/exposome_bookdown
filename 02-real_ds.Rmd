@@ -10,7 +10,7 @@ The exposome is composed of three different files (in `*.csv`, `*.tsv` or `*.txt
 Some remarks regarding this files:
 
 + All three files have to share the same separator element, for `*.csv` files is typical to use a comma (,) but it could also be a semicolon (;).
-+ The exposure names have to start with a character [a-z/A-Z], trailing special characters will cause the data entry to return errors.
++ The exposure names have to start with a character [a-z/A-Z], leading special characters will cause the data entry to return errors.
 + Exactly the same exposures have to be present on the description and exposures files.
 + Exactly the same samples have to be present on the exposures and phenotypes files.
 + The exposures and phenotypes files have an ID column, the description file does not have an ID column nor row.
