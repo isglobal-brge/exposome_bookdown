@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-02-23" />
+<meta name="date" content="2021-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,10 +172,13 @@
 <li>The <code>description</code> file contains a row for each exposure and, at last, defined the families of exposures. Usually, this file incorporates a description of the exposures, the matrix where it was obtained and the units of measurement among others.</li>
 <li>The <code>phenotypes</code> file contains the covariates to be included in the analysis as well as the health outcomes of interest. It contains a row per individual included in the analysis and a column for each covariate and outcome. Moreover, it must include a column with the individual’s identifier.</li>
 </ul>
-<p>A couple remarks regarding this files:</p>
+<p>Some remarks regarding this files:</p>
 <ul>
 <li>All three files have to share the same separator element, for <code>*.csv</code> files is typical to use a comma (,) but it could also be a semicolon (;).</li>
-<li>The exposure names have to start with a character [a-z/A-Z], special characters will cause the data entry to return errors.</li>
+<li>The exposure names have to start with a character [a-z/A-Z], trailing special characters will cause the data entry to return errors.</li>
+<li>Exactly the same exposures have to be present on the description and exposures files.</li>
+<li>Exactly the same samples have to be present on the exposures and phenotypes files.</li>
+<li>The exposures and phenotypes files have an ID column, the description file does not have an ID column nor row.</li>
 </ul>
 <p>A visual representation of the three matrices and how they correlate is the following.</p>
 <center>
