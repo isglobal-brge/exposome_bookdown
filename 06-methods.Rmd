@@ -63,7 +63,7 @@ Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Associati
 
 The stratified analysis option for the ExWAS corresponds to applying the same method as regular ExWAS to subsetted datasets. As example, a stratified analysis with the `sex` variable stratified corresponds to performing two ExWAS, one to the `male` and one for the `female` group.
 
-### Multivariate Association Analysis
+### Variable selection ExWAS
 
 There are some authors that proposed to perform association analysis in a multivariate fashion, just to take into account the correlation across exposures @agier2016systematic . A Lasso regression is implemented using Elastic-Net regularized generalized linear models implemented in *glmnet* R package.
 

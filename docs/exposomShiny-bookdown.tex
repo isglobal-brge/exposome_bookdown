@@ -138,7 +138,7 @@
 
 \title{exposomeShiny User's Guide}
 \author{Escribà Montagut, Xavier; González, Juan R.}
-\date{2021-02-22}
+\date{2021-02-26}
 
 \begin{document}
 \maketitle
@@ -169,10 +169,14 @@ exposomeShiny is a data analysis toolbox with the following features:
 \item
   Omic data integration
 \item
+  Omic data association
+\item
   Post-omic data analysis: CTD database
+\item
+  Post-omic data analysis: Enrichment analysis
 \end{itemize}
 
-To do so, exposomeShiny relies on previously existent Bioconductor packages (rexposome, omicRexposome and CTDquerier), it uses them in a seamless way so the final user of exposomShiny can perform the same studies that would conduct using the Bioconductor packages but without writing a single line of code.
+To do so, exposomeShiny relies on previously existent Bioconductor packages (rexposome, omicRexposome and CTDquerier among others), it uses them in a seamless way so the final user of exposomShiny can perform the same studies that would conduct using the Bioconductor packages but without writing a single line of code.
 
 \hypertarget{setup}{%
 \chapter{Setup}\label{setup}}
@@ -330,10 +334,10 @@ To run the application again, just enter the first bash command (\texttt{docker\
 \hypertarget{data-sets}{%
 \chapter{Data sets}\label{data-sets}}
 
-\hypertarget{exposome-dataset}{%
-\section{Exposome dataset}\label{exposome-dataset}}
+\hypertarget{expo_data}{%
+\section{Exposome dataset}\label{expo_data}}
 
-The exposome is composed of three different files (in \texttt{*.csv} format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
+The exposome is composed of three different files (in \texttt{*.csv}, \texttt{*.tsv} or \texttt{*.txt} format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
 
 \begin{itemize}
 \tightlist
@@ -343,6 +347,22 @@ The exposome is composed of three different files (in \texttt{*.csv} format). Th
   The \texttt{description} file contains a row for each exposure and, at last, defined the families of exposures. Usually, this file incorporates a description of the exposures, the matrix where it was obtained and the units of measurement among others.
 \item
   The \texttt{phenotypes} file contains the covariates to be included in the analysis as well as the health outcomes of interest. It contains a row per individual included in the analysis and a column for each covariate and outcome. Moreover, it must include a column with the individual's identifier.
+\end{itemize}
+
+Some remarks regarding this files:
+
+\begin{itemize}
+\tightlist
+\item
+  All three files have to share the same separator element, for \texttt{*.csv} files is typical to use a comma (,) but it could also be a semicolon (;).
+\item
+  The exposure names have to start with a character {[}a-z/A-Z{]}, leading special characters will cause the data entry to return errors.
+\item
+  Exactly the same exposures have to be present on the description and exposures files.
+\item
+  Exactly the same samples have to be present on the exposures and phenotypes files.
+\item
+  The exposures and phenotypes files have an ID column, the description file does not have an ID column nor row.
 \end{itemize}
 
 A visual representation of the three matrices and how they correlate is the following.
@@ -395,8 +415,8 @@ sub05 control  22.0477  boy  5    ...
 ...   ...      ...      ...  ...
 \end{verbatim}
 
-\hypertarget{plain-datasets}{%
-\section{Plain datasets}\label{plain-datasets}}
+\hypertarget{plain_data_expl}{%
+\section{Plain datasets}\label{plain_data_expl}}
 
 If the researcher has gathered all the data on a single file which contains both phenotype and exposure data, this file can be used too. The user interface has a selector for it, more information on the \protect\hyperlink{plain_data}{correspondent section}.
 
@@ -446,42 +466,50 @@ CTDquerier is a package to retrieve and visualize data from the \href{http://ctd
 \hypertarget{analysis-flowcharts}{%
 \chapter{Analysis flowcharts}\label{analysis-flowcharts}}
 
+On this section, a detailed guide on how to perform different analyses using exposomeShiny will be provided. The guide contains screenshots of the analysis steps as well as some flowcharts.
+
 \hypertarget{exposome-health-analysis}{%
 \section{Exposome health analysis}\label{exposome-health-analysis}}
 
-As any user would need to do using the Bioconductor packages (rexposome, omicRexposome and CTDquerier) when performing an analysis using an \texttt{R} script, there is some kind of flow (or pipeline) to follow in order to get to the results, this is also true on exposomeShiny, even though it's a seamless and codeless integration of the packages there's still some need for a flowchart to get the desired results. All the required flowcharts will be detailed with a box flowchart as well as screenshots of exposomeShiny in order to provide extra guidance if needed.
+The exposome health analysis corresponds to the study of the relation between exposures (exposome) and health outcomes (phenotypes). Information about exposome data exploration and pre-processing can also be found on this subsection. Along this section, the data files used as examples are: \texttt{exposures.csv}, \texttt{exposures\_lod.csv}, \texttt{description.csv}, \texttt{phenotypes.csv} and \texttt{exposome\_plain.csv} which are available \href{https://github.com/isglobal-brge/exposomeShiny/tree/master/data}{here}.
 
 \hypertarget{data-entry}{%
 \subsection{Data entry}\label{data-entry}}
 
+There are two different data entry methods. \protect\hyperlink{expo_data}{Exposome data} which uses the three tables and \protect\hyperlink{plain_data_expl}{plain data} which only uses one.
+
 \hypertarget{exposome-data}{%
 \subsubsection{Exposome data}\label{exposome-data}}
 
-Input the exposures, description and phenotypes files and load them into the application. This files have to be provided as \texttt{csv} or \texttt{txt}, there is a selector on the UI to select the type of separation used, it can be either commas, semicolons or tabs/spaces. Excel files or R objects are not supported as inputs.
+Three tables are needed to input an exposome dataset: the exposures, description and phenotypes. This files have to be provided as \texttt{csv} or \texttt{txt}. Different separator formats are supported (`,', `;', tabs and spaces). Excel files or R objects are not supported as inputs. Be sure all three files share the same separator.
 
-\includegraphics{images/analysis1_2.png} Once the tables are read two new main elements will appear, 1) the option to explore the inputted table, using a selector of the table and a button to trigger the visualization; and 2) six input fields will appear on the right side of the file browsers, they are to select the following parameters:
+\includegraphics{images/analysis1_2.png}
+
+Once the tables are read two new main elements will appear, 1) the option to explore the inputted tables; and 2) six input fields which control the following file parameters:
 
 \begin{itemize}
 \tightlist
 \item
   Column name in the \emph{description} file that contains the exposures
 \item
-  Column name in the \emph{description} file that contains the families\\
+  Column name in the \emph{description} file that contains the families
 \item
-  Column name in the \emph{exposures} file that contains the id's
+  Column name in the \emph{exposures} file that contains the identifier
 \item
-  Column name in the \emph{phenotypes} file that contains the id's
+  Column name in the \emph{phenotypes} file that contains the identifier
 \item
-  The treshold of to select between continuous or factor exposures. More than this number of unique items will be considered as `continuous'
+  The threshold to select between continuous or factor exposures. More than this number of unique items on an exposure will be considered as `continuous'
 \item
-  The encoding to search for limit of detection (LOD) missings. It can be either a number (example: \texttt{-1}) or a string (example: \texttt{LOD}).
+  The encoding to search for limit of detection (LOD) missings. It can be either a number (example: \texttt{-1}) or a string (example: \texttt{LOD}). All the cells that contain this encoder will be considered LOD missings.
 \end{itemize}
 
 This is illustrated on the following figure.
 
 \includegraphics{images/analysis1_2_2.png}
 
-Once the fields are completed, please press the \emph{Validate selections} button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user. In the case that everything is correct, the UI will be updated and a button that reads \emph{Load selected data to analyze it} will appear, by clicking this button the dataset will be loaded and the analysis can begin. The input fields are still visible past this point for the case that the user wants to load a new dataset into the application without restarting it.
+Once the fields are completed, press the \emph{Validate selections} button in order to check if all the parameters allow for a successful load of the exposome dataset, if not, a pop-up will be prompted to the user with the R error message that stopped the execution. In the case that everything is correct, the interface will be updated and a button that reads \emph{Load selected data to analyze it} will appear, by clicking this button the dataset will be loaded.
+
+\includegraphics{images/analysis1_2_2_1.png}
 
 \hypertarget{plain_data}{%
 \subsubsection{Plain data}\label{plain_data}}
@@ -494,7 +522,21 @@ Select a file and press ``Read file information''. This will change the interfac
 
 \includegraphics{images/plain_table_2.png}
 
-When all the phenotypes are selected, press ``Confirm''. Now the researcher can group the exposures into families, to do so, select them on the table, input the family name on the field ``Family of selected exposures'' and press ``Assign''. All the exposures that have empty ``Family'' fields will be treated as they are their own family.
+When all the phenotypes are selected, press ``Confirm''. Now the exposures can be grouped into families, to do so:
+
+\begin{itemize}
+\tightlist
+\item
+  Select all the exposures from the same family
+\item
+  Write the family name on the box ``Family of selected exposures''
+\item
+  Press the ``Assign'' button
+\end{itemize}
+
+The table will be updated to visualize the action performed.
+
+Exposures left with an empty ``Family'' field will be treated as they are their own family.
 
 \includegraphics{images/plain_table_3.png}
 
@@ -503,9 +545,9 @@ Finally, there are two configuration fields:
 \begin{itemize}
 \tightlist
 \item
-  The treshold of to select between continuous or factor exposures. More than this number of unique items will be considered as `continuous'
+  The threshold to select between continuous or factor exposures. More than this number of unique items on an exposure will be considered as `continuous'
 \item
-  The encoding to search for limit of detection (LOD) missings. It can be either a number (example: \texttt{-1}) or a string (example: \texttt{LOD}).
+  The encoding to search for limit of detection (LOD) missings (example: \texttt{LOD}). All the cells that contain this encoder will be considered LOD missings.
 \end{itemize}
 
 Be sure to revise them before pressing ``Load data''.
@@ -515,27 +557,45 @@ Be sure to revise them before pressing ``Load data''.
 
 \includegraphics{images/analysis1_1.png}
 
-If exposomeShiny detects LODs (limit of detection) on the exposures file, it will prompt the table with the exposures with LOD and double clicking on the desired cell will enable edit mode to input the instrument LOD. There's also the option of selecting ``Random imputation'' on the imputation method in order to imputate with random values (truncated log distribution) instead of LOD/sqrt(2). If the user imputes the LOD missings, the dataset will be imputed and the user will not need to reimport it, the loaded dataset will be updated to have the LOD missings imputed, this can be checked by clicking on the \texttt{!} symbol at the top bar of the application.
+When loading the data, if LOD missings are detected a small table with the exposures that have LOD missings will appear at the bottom of the ``Data entry'' page.
 
-\includegraphics{images/analysis1_3.png}
+\includegraphics{images/analysis1_2_3.png}
+
+This table has a column named ``LOD'', which by default reads as 1, 2, 3, \ldots{} Those values are meant to be modified by the user and input the limit of detection values for the different exposures. Those values will be used if the LOD imputation method is LOD/sqrt(2). If the imputation method used is QRILC there is no need to modify those values, as they won't be used.
+
+To modify the LOD values of the table, double click on the cell of interest and type the value (use points for decimal separation e.j. 1.156).
+
+\includegraphics{images/analysis1_2_4.png}
+
+After clicking ``Perform LOD imputation'', a new button to download the imputed dataset will appear, this will download the exposures data with the LOD missings imputed.
+
+\includegraphics{images/analysis1_2_5.png}
+
+Once the LOD imputation is completed, the exposome dataset that will be used on the following steps is imputed.
 
 \hypertarget{missing-imputation}{%
 \subsection{Missing imputation}\label{missing-imputation}}
 
 \includegraphics{images/analysis2_1.png}
 
-Once the dataset is loaded into the Shiny, look at the ``Missing Data'' tab to check the percentages of missing data for each exposure present.
+The ``Missing data'' tab displays a plot with the percentages of missing data for each exposure.
 
 \includegraphics{images/analysis2_2.png}
 
-To impute the missing values select ``Impute missing values using mice'' (Multiple Imputation by Chained Equations), no other method of imputation is available in the software at the moment. After the process finishes, the expect output should be a new missing data graph where there's no missing of any exposure.
+The missings can be imputed using Multiple Imputation by Chained Equations (MICE) by clicking the ``Impute missing values using mice'' button.
 
-\includegraphics{images/analysis2_3.png} The new imputed exposures set can be downloaded as a \texttt{*.csv} file, please note that the downloaded file just assigns numbers to the \texttt{idnum} column, if the data you are using has different \texttt{idnum} format it's needed to format it properly so that it matches the \texttt{idnum} on the phenotypes input file when inputting it to the Shiny.
+Please note that missings imputation might require other methodologies or more fine control. If that is the case, we encourage users to impute the data beforehand and input to our application data that is already imputed.
+
+Once the missings imputation is completed, the exposome dataset that will be used on the following steps is imputed. This is reflected by refreshing the plot, which should read 0\% missings for all exposures.
+
+\includegraphics{images/analysis2_3.png}
+
+The imputed exposures set can be downloaded as a \texttt{*.csv} file.
 
 \hypertarget{exposures-description}{%
 \subsection{Exposures description}\label{exposures-description}}
 
-There's the option of visualizing the main descriptive stats of the exposures dataset, available for quantitative exposure varibables. The descriptive stats (per exposure) included on the table are:
+The exposure descriptive stats tab, provides a table with the main descriptive stats of the quantitative exposures. The descriptive stats (per exposure) included on the table are:
 
 \begin{itemize}
 \tightlist
@@ -569,7 +629,7 @@ There's the option of visualizing the main descriptive stats of the exposures da
   Variance coefficient
 \end{itemize}
 
-This table will have the descriptive stats of the loaded dataset, this means that if the user has imputed the missings (remember that after imputing the missings, the imputed dataset becomes active) it will be reflected on the table as it will show 0 NAs.
+Remember that after imputing the missings, the imputed dataset becomes active, this will be reflected showing 0 NAs for example.
 
 \includegraphics{images/analysis2_4.png}
 
@@ -578,60 +638,161 @@ This table will have the descriptive stats of the loaded dataset, this means tha
 
 \includegraphics{images/analysis3_1.png}
 
-Once the dataset is loaded into the Shiny, look at the ``Check Normality'' tab to check which exposures are not normal (Normality = false), this are the results of Shapiro--Wilk testing. By selecting from the table the desired exposure and clicking the ``Plot histogram of selected exposure'', as the label of the button implies, a histogram of the selected exposure from the table can be seen.
+The table shown on the `Check normality' tab contains all the exposures, if they can be considered normal distributed and the p-value of the normality test (Shapiro-Wilk).
 
 \includegraphics{images/analysis3_2.png}
 
-There is also the option of visualizing the histogram for the implemented transformations along the normality test p-value for said transformations.
+Select an exposure from the table and click on `Plot histogram of selected exposure' to see the histogram of that exposure.
 
 \includegraphics{images/analysis3_2_2.png}
 
-By clicking the ``Show false'' button, all the non normal exposures are listed with the method that will be applied to normalize, this table can be edited (the ``Normalization method'' column) by double clicking on the desired row. There are three possible methods to use, ``log'' (default, natural logarithm), ``\^{}1/3'' and ``sqrt''. If no method is desired to be applied to an exposure (keep the original variable) input ``none''. The normalization method refers to applying X function to a column of the exposures tables, to transform it.
+There is the option to visualize the histograms with the available transformations applied, in order to see how an exposure will be affected by them. To see it select `Histogram + transformations' on the Histogram type.
+
+\includegraphics{images/analysis3_2_3.png}
+
+Aside from visualizing if exposures are normal, this tab can be used to apply transformations to the exposures. The available transformations are ``log'' (default, natural logarithm), ``\^{}1/3'' and ``sqrt''. To do so, the procedure is the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Press the `Show false' button. A pop-up will appear with a table. This table contains all the exposures that did not pass the normality test, next to the exposures the transformation to be applied is shown.
+\end{itemize}
 
 \includegraphics{images/analysis3_3.png}
 
-Click ``Normalize'' and the normalization method selected will be applied, the table on the ``Check Normality'' tab will be updated with the results of the normalization.
+\begin{itemize}
+\tightlist
+\item
+  Modify the transformation method by double clicking on the cell to be changed and typing the required method. Input `none' if no transformation is desired for a certain exposure.
+\end{itemize}
+
+\includegraphics{images/analysis3_2.png}
+
+\begin{itemize}
+\tightlist
+\item
+  Press `Normalize' to apply the transformations.
+\end{itemize}
+
+After the transformations are applied, the table of normality tests will be updated. The dataset used after transforming is updated with the new values.
 
 \hypertarget{exposures-description-1}{%
 \subsection{Exposures description}\label{exposures-description-1}}
 
 \includegraphics{images/analysis4_1.png}
 
-To see all the insights of the exposures dataset loaded into the Shiny, once loaded it check the exposures description tab, there are three options to dig into the dataset, the family (family of the exposure) to visualize and two grouping factors (phenotypes).
+On the `Exposures description' tab, exploratory analysis of the exposures can be performed. Again, the data analyzed by this tab will be imputed or normalized if the user has performed it before.
+
+There are three input fields to obtain different plots:
+
+\begin{itemize}
+\tightlist
+\item
+  Family: To define which family of exposures wil be plotted
+\item
+  Grouping factor: Qualitative phenotype to group the exposures
+\item
+  Second grouping factor: Second qualitative phenotype to group the exposures
+\end{itemize}
+
+The visualization is different for categorical and quantitative exposures.
+
+Some examples:
+
+\hypertarget{quantitative-family-grouped-by-sex}{%
+\subsubsection{Quantitative family, grouped by sex}\label{quantitative-family-grouped-by-sex}}
 
 \includegraphics{images/analysis4_2.png}
+
+\hypertarget{qualitative-family-grouped-by-sex}{%
+\subsubsection{Qualitative family, grouped by sex}\label{qualitative-family-grouped-by-sex}}
+
+\includegraphics{images/analysis4_2_1.png}
+
+\hypertarget{quantitative-family-grouped-by-sex-and-flu-diagnosis-binomial-factor}{%
+\subsubsection{Quantitative family grouped by sex and flu diagnosis (binomial factor)}\label{quantitative-family-grouped-by-sex-and-flu-diagnosis-binomial-factor}}
+
+\includegraphics{images/analysis4_2_2.png}
 
 \hypertarget{pca-analysis}{%
 \subsection{PCA Analysis}\label{pca-analysis}}
 
 \includegraphics{images/analysis5_1.png}
 
-To see the results of a PCA (principal component analysis) study, load the data and check the PCA Visualization tab, there a set and grouping factor can be choose, it's important noting (as it's already stated on the Shiny) that the grouping parameter only works when the set is selected to ``samples''. There are also selectors to choose which principal component to visualize on each axis, 10 principal components are computed.
+On the `PCA visualization' tab, the results of a PCA analysis on the exposome data is displayed.
+
+There are some input fields to modify the plot:
+
+\begin{itemize}
+\tightlist
+\item
+  Set: Select `all' to see an array of four plots with different PCA related information. There is also the option of selecting `samples' and `exposures' to only display those two plots on a bigger scale.
+\item
+  Grouping factor: To group the `samples' set using a qualitative phenotype.
+\item
+  Principal components: By default the first and second principal components are used for the plots. They can be changed using those inputs, which affect all the plots.
+\end{itemize}
+
+\hypertarget{set-all}{%
+\subsubsection{Set: `all'}\label{set-all}}
 
 \includegraphics{images/analysis5_2.png}
 
-If the association of the PCA analysis with the exposures is desired to visualize, check the ``PCA association with exposures'' tab, there are two grouping methods to visualize, the phenotypes to principal components and the exposures to principal components.
+\hypertarget{set-samples-grouped-by-sex}{%
+\subsubsection{Set: `samples' grouped by sex}\label{set-samples-grouped-by-sex}}
+
+\includegraphics{images/analysis5_2_1.png}
+
+\hypertarget{set-exposures}{%
+\subsubsection{Set: `exposures'}\label{set-exposures}}
+
+\includegraphics{images/analysis5_2_2.png}
+
+Moreover, there is an additional PCA visualization tab named `PCA association with exposures'. On this tab there are two heatmap plots available.
+
+\begin{itemize}
+\tightlist
+\item
+  Association of the exposures to the principal components
+\end{itemize}
 
 \includegraphics{images/analysis5_3.png}
 
-By clicking on ``Visualize as table'', the table corresponding to the selected association will be prompted on a pop-up window, this table can be downloaded as a csv.
+\begin{itemize}
+\tightlist
+\item
+  Association of the phenotypes to the principal components
+\end{itemize}
+
+\includegraphics{images/analysis5_3_1.png}
+
+The values of this heatmaps can be visualized as tables by clicking on `Visualize as table' and be downloaded as \texttt{*.csv}.
 
 \includegraphics{images/analysis5_3_2.png}
 
-\hypertarget{clusterization-and-correlation-of-exposures}{%
-\subsection{Clusterization and correlation of exposures}\label{clusterization-and-correlation-of-exposures}}
-
-Displaying the correlation of the exposures can help to visualize intra and inter family relations between the exposures, for that reason there are two different visualization options, the circos and the matrix.
-
-The clusterization of exposures uses a hierarchical clustering algorithm to classify the individuals profiles of exposures in k groups, where k can be selected by the user. The plot shows the profile for each group of individuals.
+\hypertarget{correlation-of-exposures}{%
+\subsection{Correlation of exposures}\label{correlation-of-exposures}}
 
 \includegraphics{images/analysis6_1.png}
 
-To see the results of the exposure correlation and clustering, select the corresponding tab to each analysis. For the exposure correlation analysis there are two visualizations, the matrix representation and the circos. The correlation uses Pearson method for numerical-to-numerical correlation, Cramer's V for categorical-to-categorical correlation and linear models for categorical-to-numerical.
+Displaying the correlation of the exposures can help to visualize intra and inter family relations between the exposures, for that reason there are two different visualization options, the circos and the matrix.
+
+The correlation is computed using Pearson method for numerical-to-numerical correlation, Cramer's V for categorical-to-categorical correlation and linear models for categorical-to-numerical.
+
+\hypertarget{matrix-plot}{%
+\subsubsection{Matrix plot}\label{matrix-plot}}
 
 \includegraphics{images/analysis6_2.png}
 
+\hypertarget{circos-plot}{%
+\subsubsection{Circos plot}\label{circos-plot}}
+
 \includegraphics{images/analysis6_3.png}
+
+\hypertarget{clusterization-of-exposures}{%
+\subsection{Clusterization of exposures}\label{clusterization-of-exposures}}
+
+The clusterization of exposures uses a hierarchical clustering algorithm to classify the individuals profiles of exposures in k groups, where k can be selected by the user. The plot shows the profile for each group of individuals.
 
 \includegraphics{images/analysis6_4.png}
 
@@ -640,52 +801,126 @@ To see the results of the exposure correlation and clustering, select the corres
 
 \includegraphics{images/analysis7_1.png}
 
-\hypertarget{regular}{%
-\subsubsection{Regular}\label{regular}}
+There are two ExWAS methods implemented, the regular and the stratified. The difference is that the stratified performs multiple ExWAS subsetting the data with a quantitative phenotype (example: ExWAS with male data and ExWAS with female data).
 
-To perform an ExWAS (exposome-wide association, univariate test of the association between exposures and health outcomes using generalized linear models) study, check the ExWAS tab and select the addecuate parameters for the ExWAS plot, there are two different plot representations, the output variable to choose (phenotype), the output family and as many covariables (phenotypes) as the user wants. There are internal checks to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial.
+To perfom an ExWAS enter the required fields:
+
+\begin{itemize}
+\tightlist
+\item
+  Outcome variable: Output phenotype
+\item
+  Covariable(s): Adjusting phenotype(s)
+\item
+  Output family: Family of the outcome variable (Gaussian/Binomial/Poisson)
+\item
+  Type of plot: Manhattan / Effects
+\end{itemize}
+
+\hypertarget{regular-exwas.-outcome-flu-covariable-sex-family-binomial}{%
+\subsubsection{Regular ExWAS. Outcome: flu, Covariable: Sex, Family: Binomial}\label{regular-exwas.-outcome-flu-covariable-sex-family-binomial}}
 
 \includegraphics{images/analysis7_2.png}
 
-\hypertarget{stratified}{%
-\subsubsection{Stratified}\label{stratified}}
+\hypertarget{stratified-exwas.-outcome-flu-cobariable-none-family-binomial-stratifying-variable-sex}{%
+\subsubsection{Stratified ExWAS. Outcome: flu, Cobariable: None, Family: Binomial, Stratifying variable: Sex}\label{stratified-exwas.-outcome-flu-cobariable-none-family-binomial-stratifying-variable-sex}}
 
-There is an option to perform a stratified ExWAS, to do so, check the toggle ``Stratified analysis'', this will display a new input field to select a categorical phenotype to stratify by. This analysis will yield as many ExWAS plots as levels has the category selected, when downloading the table of results for a stratified analysis, a \emph{.zip} file will be downloaded with a table corresponding to each plot. The naming of the tables corresponds to the stratifying variable with the category name attached (\texttt{sex\_female.csv} / \texttt{sex\_male.csv} in the presented case).
+\includegraphics{images/analysis7_2_1.png}
 
-\includegraphics{images/analysis7_7.png}
+The plots and results table can be downloaded. The results table contains the exposure names, association pvalue and effect (with CI 95\% for the effect). For the stratified ExWAS, the results table is actually a \texttt{*.zip} file with a file for each subset.
 
 \hypertarget{exwas---ctdquerier}{%
 \subsection{ExWAS - CTDquerier}\label{exwas---ctdquerier}}
 
-The ExWAS tab also is able to perform a CTD query of the desired chemicals.
-
 \includegraphics{images/analysis7_3.png}
 
-To perform a CTDquerier of chemicals with the results of the ExWAS, click on the desired exposure to preload it into the query, when clicked, a chemical name with it's associated P-Value will appear on the table on the right, if that's the desired chemical to add to the query list click ``Add to querier''. In the case of adding an unwanted chemical to the query list, select it (or them) by clicking on the Querier list and click on ``Remove from querier''.
+The ExWAS analysis can reveal high association between health outcomes and exposures. To obtain further information (from the CTD database) on exposures of interest:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Perform the ExWAS
+\item
+  Click on the exposure of interest on the plot
+\item
+  A table with information about the selected exposure will appear on the right
+\end{enumerate}
 
 \includegraphics{images/analysis7_4.png}
 
-\includegraphics{images/analysis7_5.png}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  If the exposure shown on the right table is of interest, click on `Add to querier'
+\end{enumerate}
 
-To do the query of the chemicals to de CTD database click on ``Query on the CTD gene database'' and see the results on the ``Chemical CTDquerier Results'' subtab. It's important noting that on the ``Kegg pathways'' and ``Go terms'' the input field corresponds to the negative exponent of the filter.
+\includegraphics{images/analysis7_4_1.png}
 
-\includegraphics{images/analysis7_6.png}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Repeat 2/3/4 for all the exposures of interest
+\end{enumerate}
 
-\hypertarget{multivariate-exwas}{%
-\subsection{Multivariate ExWAS}\label{multivariate-exwas}}
+\includegraphics{images/analysis7_4_2.png}
 
-Multivariate analysis using Elastic Net (LASSO regression). Multivariate ExWAS applies elastic net to the exposures given a health outcome of interest. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (\texttt{Min}) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (\texttt{1SE}).
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Once all the exposures of interest are on the `Querier' table, click `Query on the CTD gene database'
+\end{enumerate}
+
+The results of this query can be visualized on the `Chemical CTDquerier Results'. There are five visualization options:
+
+\hypertarget{gene---chemical-interactions}{%
+\subsubsection{Gene - chemical interactions}\label{gene---chemical-interactions}}
+
+\includegraphics{images/analysis7_4_3.png}
+\includegraphics{images/analysis7_4_4.png}
+
+\hypertarget{disease-relation}{%
+\subsubsection{Disease relation}\label{disease-relation}}
+
+\includegraphics{images/analysis7_4_5.png}
+
+\hypertarget{kegg-pathways}{%
+\subsubsection{Kegg pathways}\label{kegg-pathways}}
+
+\includegraphics{images/analysis7_4_6.png}
+
+\hypertarget{go-terms}{%
+\subsubsection{Go terms}\label{go-terms}}
+
+\includegraphics{images/analysis7_4_7.png}
+
+\hypertarget{variable-selection-exwas}{%
+\subsection{Variable selection ExWAS}\label{variable-selection-exwas}}
+
+Variable selection ExWAS applies elastic net (LASSO regression) to the exposures given a health outcome of interest. The resulting heat map is coloured with the coefficient of each exposure in relation to the health outcome, so the ones in white are not associated. The two columns of the heat map correspond to the minimum lambda (\texttt{Min}) and to the lambda which gives the most regularized model such that error is within one standard error of the minimum (\texttt{1SE}).
 
 \includegraphics{images/analysis8_1.png}
 
-To perform a multivariate ExWAS study, check the Multivariate ExWAS tab and select the desired output parameter, click on run model to generate the plot. As on the ExWAS plot options there's implemented an internal check to advise the user on which parameters to select depending if the selected outcome is numerical or bionomial, as the diagrams states if the dataset has not been imputed the missings, it will automatically do it to perform the Multivariate ExWAS, however when closing the plot the imputed dataset will be removed from the environment, so all the other studies performed afterwards will not be altered.
+To perform a variable selection ExWAS study, check the Variable selection ExWAS tab and select the desired output parameter, click on run model to generate the plot.
+
+This analysis requires data without missings, so if there are missings MICE imputation is applied beforehand. After the model is fitted, the imputed dataset will be removed.
 
 \includegraphics{images/analysis8_2.png} \includegraphics{images/analysis8_3.png}
+
+The table of results and plot can be downloaded.
 
 \hypertarget{exposome-omic-analysis}{%
 \section{Exposome-Omic analysis}\label{exposome-omic-analysis}}
 
-It's important noting that the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the \texttt{server.R} file.
+The aim of this analysis is to perform an association test between the gene expression levels and the exposures. The datasets used in this section are \texttt{exposures.csv}, \texttt{description.csv}, \texttt{phenotypes.csv} and \texttt{gene\_exp.Rdata} which are available \href{https://github.com/isglobal-brge/exposomeShiny/tree/master/data}{here}.
+
+It's important noting that (by default) the maximum size of the omics data is 30 MB, if the omics file to be analyzed is bigger, change the line number 2 of the \texttt{server.R} file.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -699,11 +934,11 @@ It's important noting that the maximum size of the omics data is 30 MB, if the o
 
 \includegraphics{images/analysis9_1.png}
 
-Do first the proceeding of exposome data load and corresponding treatment if desired, then proceed to load the omic dataset on the ``Data Entry'' subtab. The omic data should be provided as a \texttt{*.RData} file.
+First, make sure that the exposome dataset is loaded. Then, proceed to loading the omics data, which should be providad as a \texttt{*.RData}.
 
 \includegraphics{images/analysis9_2.png}
 
-The exposome dataset can be subseted by families for this analysis, on the ``Exposome subsetting'' subtab select the families that are desired to be included in this new set to study, if all the families are desired just don't input any and proceed to click the ``Subset and add'', which will trigger the action to combine the subsetted (or not) exposome dataset with the provided omic dataset.
+This type of analysis is usually very computationally intensive, so it's useful to be able to limit the scope. The exposome data can be subsetted by families for that reason. If all the families are desired don't input any and proceed to click the ``Subset and add''.
 
 \includegraphics{images/analysis9_3.png}
 
@@ -711,7 +946,9 @@ Select the variables for the association analysis (linear models) and if SVA (su
 
 \includegraphics{images/analysis9_4.png}
 
-There are tabs to visualize the results of running the association model, all of the are on the ``Model visualization'' subtab. The ``Results table'' shows the gene, log of the fold change, p-value and adjusted p-value.
+Once complete, there are various tabs to visualize the results.
+
+The ``Results table'' shows the gene, log of the fold change, p-value and adjusted p-value.
 
 \includegraphics{images/analysis9_5.png}
 
@@ -732,15 +969,52 @@ The Volcan plot shows a volcano plot (log2(fold change) vs -log10(p-value)). For
 
 \includegraphics{images/analysis10_1.png}
 
-To perform a CTD querier study of the exposome-omic association analysis, as before, load both datasets and run the desired model with them, check the Volcano plot and click on the desired point on the Volcano plot, the information of the selected plot will appear on the table below the plot (sometimes there are many points close so more than one rows can appear on the table), select from the table the desired point to add to the query and click ``Add to querier''. It's important noting that when trying to add to the querier the Shiny will find on the fields of the omic dataset that the user specifies on top of the plot. If the search does not return any symbol a prompt will appear, however if it's found it will be added to the lower table corresponding to the genes to query.
+The association analysis of exposome data and omic data may point some genes of interest. Information about these genes can be queried on the CTD database.
+
+To do so:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Perform association analysis
+\item
+  Go to the volcano plot visualization
+\item
+  Select one point. This will update the `Selected point information' table at the bottom
+\end{enumerate}
 
 \includegraphics{images/analysis10_2.png}
 
-If by mistake some gene (or genes) were introduced to the querier, select them by clicking on the table row and click ``Remove from querier''. Go to the CTDquerier tab to perform the query with the selected genes.
+Sometimes multiple points may be very close, so this table will show information about them
+
+\includegraphics{images/analysis10_2_1.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Select the point of interest from the `Selected point information' table and click on `Add to querier'. This will the search of the gene related to the selected SNP. Sometimes the search may not yield a resulting gene.
+\end{enumerate}
+
+\includegraphics{images/analysis10_2_2.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Repeat 3/4 for all the points of interest
+\end{enumerate}
+
+\includegraphics{images/analysis10_2_3.png}
+
+When all the genes of interest are on the querier, move to the `CTDquerier' tab. On it, the genes to be queried can be visualized before performing the query. Once the query is performed, the results can be visualized on the different tabs.
 
 \includegraphics{images/analysis10_3.png}
 
-There are six tabs showing different results interpretations. First there's the ``Lost \& found'' tab which a plot to see the amount of genes found on the CTD database and the ones that were not found them, ther's also two lists stating the names of them.
+There are six tabs showing different results interpretations. First there's the ``Lost \& found'' tab which a plot to see the amount of genes found on the CTD database and the ones that were not found , there's also two lists stating the names of them.
 
 \includegraphics{images/analysis10_4.png}
 
@@ -769,9 +1043,7 @@ The association matrix tab shows a matrix of genes vs.~chemicals with a heatmap 
 
 \includegraphics{images/analysis11.png}
 
-To perform an enrichment analysis, the genes of interest have to ve selected as with the CTDquerier, using the volcano plot from the association analysis.
-
-\includegraphics{images/analysis10_2.png}
+To perform an enrichment analysis, select the genes of interest by following the same procedure as with the CTDquerier.
 
 After selecting them, go to the ``Enrichment analysis'' tab, on it there is a selector to choose between GO and KEGG databases and a threshold selector for the cutoff pvalue of the enrichment analysis.
 
@@ -788,24 +1060,77 @@ The following four tabs correspond to different visualization options for the re
 \includegraphics{images/analysis11_5.png}
 \includegraphics{images/analysis11_6.png}
 
-\hypertarget{exposome-omic-intregration-e.g.-crossomics}{%
-\section{Exposome-Omic intregration (e.g.~crossomics)}\label{exposome-omic-intregration-e.g.-crossomics}}
+\hypertarget{exposome-omic-integration-e.g.-crossomics}{%
+\section{Exposome-Omic integration (e.g.~crossomics)}\label{exposome-omic-integration-e.g.-crossomics}}
+
+The datasets used in this section are \texttt{exposures\_2.csv}, \texttt{description\_2.csv}, \texttt{phenotypes\_2.csv}, \texttt{brge\_gexp.rda} and \texttt{brge\_prot.rda} which are available \href{https://github.com/isglobal-brge/exposomeShiny/tree/master/data}{here}.
 
 \includegraphics{images/analysis12.png}
 
-The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis ,multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first methods is implemented in R package \texttt{PMA} (CRAN) and the second in \texttt{omicade4} R package (Bioconductor). The PLS uses the \texttt{pls} R package (CRAN).
+The relation between exposures and omic-features can be studied from another perspective, different from the association analyses. The integration analysis can be done, using multi canonical correlation analysis, multiple co-inertia analysis or partial least squares (this method only is supported with one omics dataset). The first method is implemented in R package \texttt{PMA} (CRAN) and the second in \texttt{omicade4} R package (Bioconductor). The PLS uses the \texttt{mixOmics} R package (Bioconductor).
 
-For the MCIA and MCCA options, the exposome dataset can't contain missings, so it needs to be imputed beforehand. For the PLS there can be missings, however the integration analysis is done with complete cases only. Also different visualizations are provided for each method, as the used R packages provide different visualization tools, all three methods generate different type of R objects, which can be downloaded to be explorated by the user on a separate R session.
+Before conducting an integration model, an exposome dataset has to be loaded into the Shiny application.
+
+For the MCIA and MCCA options, the exposome dataset can't contain missings, so it needs to be imputed beforehand. For the PLS there can be missings. Different visualizations are provided for each method, as the used R packages provide different visualization tools, all three methods generate different plots. The Rdata object that contains the results can be downloaded to be explorated by the user on a separate R session.
 
 The differences between association and crossomics are that the first method test association between two complete data-sets, by removing the samples having missing values in any of the involved data-sets, and the second try to find latent relationships between two or more sets.
 
-The following screenshots correspond to integration analysis using the exposome dataset \texttt{data/*\_2} and the proteome omics dataset \texttt{data/brge\_prot.rda}. (Exposome imputed inside exposomeShiny using MICE)
+The initial page of the integration is the following.
 
 \includegraphics{images/analysis12_1.png}
 
+The user has a field to select a omics file and a `Type of file' field. This text field is to input whether the selected data is expression/proteome/\ldots{} this field will be used for informative purposes when displaying the results.
+
+If more than one omics dataset is going to be used on the integration, click on `More data' to get additional input fields, remember that only MCIA and MCCA accept more than one omics dataset.
+
 \includegraphics{images/analysis12_2.png}
 
+Once the data entry is completed, click on `Load data and perform integration'. Go to the results page to see the plots of the integration.
+
+The following screenshots are the results of an integration analysis using the exposome dataset (\texttt{exposures\_2.csv}, \texttt{description\_2.csv}, \texttt{phenotypes\_2.csv}) with the missings imputed (using the `Missing data' tab of the Shiny) expression omics (\texttt{brge\_gexp.rda}) and proteome omics (\texttt{brge\_prot.rda}). All this mentioned datasets can be found \href{https://github.com/isglobal-brge/exposomeShiny/tree/master/data}{here}.
+
+\hypertarget{integration-using-mcia}{%
+\subsection{Integration using MCIA}\label{integration-using-mcia}}
+
 \includegraphics{images/analysis12_3.png}
+
+\hypertarget{integration-using-mcca-using-only-the-proteome-omics}{%
+\subsection{Integration using MCCA (using only the proteome omics)}\label{integration-using-mcca-using-only-the-proteome-omics}}
+
+\includegraphics{images/analysis12_4.png}
+
+\hypertarget{integration-using-pls-using-only-the-proteome-omics}{%
+\subsection{Integration using PLS (using only the proteome omics)}\label{integration-using-pls-using-only-the-proteome-omics}}
+
+There are multiple visualization options for the PLS integration.
+
+\hypertarget{the-exposures-space}{%
+\subsubsection{The exposures space}\label{the-exposures-space}}
+
+Can be grouped using the categorical phenotypes of the exposome data
+
+\includegraphics{images/analysis12_5.png}
+
+\hypertarget{the-variables-space}{%
+\subsubsection{The variables space}\label{the-variables-space}}
+
+\includegraphics{images/analysis12_6.png}
+
+\hypertarget{a-correlation-heatmap}{%
+\subsubsection{A correlation heatmap}\label{a-correlation-heatmap}}
+
+Available for the first three principal components
+
+\includegraphics{images/analysis12_7.png}
+
+\hypertarget{loading-plots-coefficients-of-each-variable}{%
+\subsubsection{Loading plots (coefficients of each variable)}\label{loading-plots-coefficients-of-each-variable}}
+
+Available for the first three principal components
+
+\includegraphics{images/analysis12_8.png}
+
+All plots can be downloaded individually, also, the Rdata file that contains the results of the integration can be downloaded.
 
 \hypertarget{general-application-functionalities}{%
 \chapter{General application functionalities}\label{general-application-functionalities}}
@@ -938,8 +1263,8 @@ Exposome-Wide Association Study (ExWAS) is equivalent to a Genome-Wide Associati
 
 The stratified analysis option for the ExWAS corresponds to applying the same method as regular ExWAS to subsetted datasets. As example, a stratified analysis with the \texttt{sex} variable stratified corresponds to performing two ExWAS, one to the \texttt{male} and one for the \texttt{female} group.
 
-\hypertarget{multivariate-association-analysis}{%
-\subsection{Multivariate Association Analysis}\label{multivariate-association-analysis}}
+\hypertarget{variable-selection-exwas-1}{%
+\subsection{Variable selection ExWAS}\label{variable-selection-exwas-1}}
 
 There are some authors that proposed to perform association analysis in a multivariate fashion, just to take into account the correlation across exposures \citet{agier2016systematic} . A Lasso regression is implemented using Elastic-Net regularized generalized linear models implemented in \emph{glmnet} R package.
 
@@ -960,7 +1285,7 @@ There are three different methodologies to perform the integration analysis:
 \item
   Multiple co-inertia analysis (MCIA). Implemented using the \texttt{mcia} function of \texttt{omicade4} R package \citet{mcia} , \citet{min2020sparse} .
 \item
-  Partial least squares (PLS)
+  Partial least squares (PLS). Implemented using the \texttt{plsr} function of \texttt{pls} R package \citet{mevik2015introduction} .
 \end{itemize}
 
 \hypertarget{enrichment-analysis-1}{%

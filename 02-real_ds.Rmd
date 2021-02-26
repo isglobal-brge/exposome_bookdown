@@ -1,6 +1,6 @@
 # Data sets
 
-## Exposome dataset
+## Exposome dataset {#expo_data}
 The exposome is composed of three different files (in `*.csv`, `*.tsv` or `*.txt` format). Those files are refered inside the Shiny as exposures, description and phenotypes. Their content is the following:
 
 + The `exposures` file contains the measures of each exposure for all the individuals included on the analysis. It is a matrix-like file having a row per individual and a column per exposures. It must includes a column with the subject’s identifier.
@@ -67,7 +67,7 @@ sub05 control  22.0477  boy  5    ...
 ...   ...      ...      ...  ...
 ```
 
-## Plain datasets
+## Plain datasets {#plain_data_expl}
 
 If the researcher has gathered all the data on a single file which contains both phenotype and exposure data, this file can be used too. The user interface has a selector for it, more information on the [correspondent section](#plain_data).
 
