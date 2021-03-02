@@ -39,7 +39,7 @@ R packages:
 | enrichplot                        | 1.10.2   |
 | ggupset                           | 0.3.0    |
 | imputeLCMD                        | 2.0      |
-| pls                               | 2.7-3    |
+| mixOmics                          | 6.14.0   |
 
 
 There are two different ways of setting up and using exposomeShiny
